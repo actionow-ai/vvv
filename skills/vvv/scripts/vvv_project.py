@@ -26,6 +26,9 @@ KIT_FILES = ['src', 'catalog', 'public', 'scripts', 'package.json', 'package-loc
 FINGERPRINT_PATHS = ['inputs.json', 'assets.json', 'package.json', 'package-lock.json',
                      'tsconfig.json', 'remotion.config.ts', 'src', 'public', 'catalog', 'scripts']
 PROPS_SCHEMA = 'schema/props.schema.json'
+# The emotional vocabulary of a template's arc and of the photo tags an agent writes (vvv_arc).
+MOODS = ('nostalgic', 'funny', 'sweet', 'romantic', 'moving', 'joyful')
+SUBJECTS = ('groom', 'bride', 'couple', 'family', 'friends', 'other')
 
 
 def read_json(path):
@@ -152,10 +155,55 @@ def validate_catalog(catalog, template):
     if package is not None and (not isinstance(package, dict) or
                                 not re.fullmatch(r'@[a-z0-9][a-z0-9-]*/[a-z0-9][a-z0-9-]*', str(package.get('name', '')))):
         fail('package', 'Expected {"name": "@scope/name", ...}.')
+    if 'arc' in catalog:
+        validate_arc(catalog['arc'], slots, fail)
     still = limits.get('maxStillSeconds', 3)
     if not isinstance(still, (int, float)) or isinstance(still, bool) or not math.isfinite(still) or still <= 0:
         fail('check.maxStillSeconds', 'Expected a positive number of seconds.')
     return catalog
+
+
+def validate_arc(arc, slots, fail):
+    """The arc lists the film's sections in playing order with the moods they want; every slot is in one section."""
+    if not isinstance(arc, list) or not arc:
+        fail('arc', 'Expected a nonempty list of sections.')
+    seen, ids = set(), set()
+    for index, section in enumerate(arc):
+        location = f'arc[{index}]'
+        if not isinstance(section, dict) or not isinstance(section.get('id'), str) or \
+                not TEMPLATE_ID.fullmatch(section['id']) or section['id'] in ids:
+            fail(location + '.id', 'Expected a unique lowercase section id.')
+        ids.add(section['id'])
+        if not isinstance(section.get('mood'), list) or not section['mood'] or \
+                not all(m in MOODS for m in section['mood']):
+            fail(location + '.mood', f'Expected a nonempty list of {", ".join(MOODS)}.')
+        if section.get('order', 'input') not in ('input', 'chronological'):
+            fail(location + '.order', 'Expected input or chronological.')
+        if not isinstance(section.get('slots'), list) or not section['slots']:
+            fail(location + '.slots', 'Expected a nonempty list of slot names.')
+        for entry in section['slots']:
+            spec = {'slot': entry} if isinstance(entry, str) else entry
+            name = spec.get('slot') if isinstance(spec, dict) else None
+            if name not in slots or name in seen:
+                fail(location + '.slots', f'{name!r} is not a declared slot, or is in two sections.')
+            seen.add(name)
+            if not all(m in MOODS for m in spec.get('mood', [])) or not all(x in SUBJECTS for x in spec.get('subject', [])) \
+                    or not isinstance(spec.get('pin', False), bool):
+                fail(f'{location}.slots.{name}', 'Unknown mood or subject, or a non-boolean pin.')
+    if seen != set(slots):
+        fail('arc', 'Every slot must be in exactly one section; missing: ' + ', '.join(sorted(set(slots) - seen)))
+
+
+def format_arc(catalog, frame_format):
+    """The arc for one format: its sections with only the slots the format uses, empty sections dropped."""
+    used = set(format_slots(catalog, frame_format))
+    arc = []
+    for section in catalog.get('arc') or []:
+        entries = [{'slot': e} if isinstance(e, str) else dict(e) for e in section['slots']]
+        entries = [e for e in entries if e['slot'] in used]
+        if entries:
+            arc.append({**section, 'slots': entries})
+    return arc
 
 
 def kit_root(kit):
@@ -266,6 +314,8 @@ def describe_template(kit, template, frame_format=None, script='scripts/vvv.py')
     formats = format_entries(catalog)
     for entry in formats:
         entry['sample'] = catalog['formats'][entry['name']].get('sample') or catalog['sample']
+    arc = [{'id': x['id'], 'mood': x['mood'], **({'order': x['order']} if x.get('order') == 'chronological' else {}),
+            'slots': [e['slot'] if len(e) == 1 else e for e in x['slots']]} for x in format_arc(catalog, frame_format)]
     chosen = [] if frame_format == catalog['defaultFormat'] else ['--format', frame_format]
     command = f'python3 {script} init ' + ' '.join(source + chosen)
     return {'status': 'passed', 'id': catalog['id'], 'kind': catalog.get('kind', 'template'),
@@ -279,7 +329,7 @@ def describe_template(kit, template, frame_format=None, script='scripts/vvv.py')
                       k not in ('photos', 'copy', 'couple', 'fps', 'format', 'music')},
             'music': {'required': bool(catalog.get('music', {}).get('required')), 'src': music.get('src', ''),
                       **({'downloadOnly': music_download} if music_download is not None else {})},
-            'fixture': fixture,
+            'fixture': fixture, **({'arc': arc} if arc else {}),
             'next': [command + ' --photos PHOTOS_DIR --output PROJECT', command + ' --example --output PROJECT']}
 
 
@@ -323,6 +373,26 @@ def slot_bounds(spec):
     return count, int(spec.get('min', count)), spec.get('max', count if spec['kind'] == 'array' else None)
 
 
+def slot_takes(catalog, available, allow_repeat, frame_format):
+    """How many photos each shared (non-independent) slot of a format takes from `available` distinct photos:
+    every slot its minimum first, then spare photos toward each slot's count, in slot order."""
+    slots = catalog['slots']
+    used = set(format_slots(catalog, frame_format))
+    shared = [name for name in slots if name in used and not slots[name].get('independent')]
+    take = {name: slot_bounds(slots[name])[1] for name in shared}
+    needed = sum(take.values())
+    if needed > available and not allow_repeat:
+        detail = ', '.join(f'{name} {take[name]}' for name in shared if take[name])
+        raise ValueError(f'INSUFFICIENT_PHOTOS: {catalog["id"]} ({frame_format}) needs at least {needed} distinct photos '
+                         f'({detail}); got {available}. Provide more photos, adapt the scene, or explicitly use --allow-repeat.')
+    spare = max(0, available - needed)
+    for name in shared:
+        extra = min(spare, slot_bounds(slots[name])[0] - take[name])
+        take[name] += extra
+        spare -= extra
+    return shared, take
+
+
 def bind_photos(catalog, assets, allow_repeat=False, frame_format=None):
     """Assign photos in input order. Every slot the format uses gets its minimum first; spare photos
     then fill slots toward their target count, in slot order. Independent slots (galleries) prefer photos
@@ -336,18 +406,7 @@ def bind_photos(catalog, assets, allow_repeat=False, frame_format=None):
         raise ValueError('NO_USABLE_PHOTOS: No supported, decodable photos were found.')
     frame_format = frame_format or catalog['defaultFormat']
     used = set(format_slots(catalog, frame_format))
-    shared = [name for name in slots if name in used and not slots[name].get('independent')]
-    take = {name: slot_bounds(slots[name])[1] for name in shared}
-    needed = sum(take.values())
-    if needed > len(ids) and not allow_repeat:
-        detail = ', '.join(f'{name} {take[name]}' for name in shared if take[name])
-        raise ValueError(f'INSUFFICIENT_PHOTOS: {catalog["id"]} ({frame_format}) needs at least {needed} distinct photos '
-                         f'({detail}); got {len(ids)}. Provide more photos, adapt the scene, or explicitly use --allow-repeat.')
-    spare = max(0, len(ids) - needed)
-    for name in shared:
-        extra = min(spare, slot_bounds(slots[name])[0] - take[name])
-        take[name] += extra
-        spare -= extra
+    shared, take = slot_takes(catalog, len(ids), allow_repeat, frame_format)
     picks, wrapped, cursor = {}, set(), 0
     for name in shared:
         picks[name] = [ids[(cursor + i) % len(ids)] for i in range(take[name])]

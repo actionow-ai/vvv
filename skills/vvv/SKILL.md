@@ -49,10 +49,10 @@ Routes combine: a brainstorm often lands on a template, and a recreation can bec
 
 1. `python3 scripts/vvv.py templates` lists each template with its description, formats and per-format `minPhotos`/`targetPhotos`. Choose by purpose, then format (16:9 for a screen, 9:16 for a phone); ask if you don't know where it will play.
 2. `python3 scripts/vvv.py describe --template ID [--format F]` prints one compact JSON: photo needs, slots with hints, editable copy fields, other props, music, sample window, fixture and next commands. Read it instead of the template source.
-3. `init --photos ...` with the user's photos, or `init --example` for a demo render from the template's own inputs and photos.
-4. Review the contact sheet and slot mapping, and replace every line of demo copy. Run `doctor --project DIR` and apply its steps (`npm ci`, `npm run music`), or add the user's track and run `npm run beats`.
+3. `init --photos ...` with the user's photos, or `init --example` for a demo render from the template's own inputs and photos. When the user or their studio has a saved look (`style list`), add `--style NAME`; it brings their approved rules, music and shared copy.
+4. Look at every photo, write `creative/photo-tags.json` and run `arrange`, so each photo lands in the section whose mood it carries ([emotional arc](references/story-editing.md#order-photos-along-the-emotional-arc)); show the user `creative/arc-sheet.jpg` and confirm the order. Replace every line of demo copy. Run `doctor --project DIR` and apply its steps (`npm ci`, `npm run music`), or add the user's track and run `npm run beats`.
 5. `validate` (it lists only the checks that did not pass, plus a `passed` count; `--verbose` shows all), then sample the hardest range, `check` it and look at it.
-6. Render the full film, `check` again, then deliver.
+6. Render the full film, `check` again, then deliver. When the user will make more films in this style (a studio, a series), offer `style save --project PROJECT --name NAME` so the next one starts from it.
 
 Helper errors are one JSON object, `{"status": "failed", "code", "message", "next"}`; follow `next`.
 

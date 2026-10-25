@@ -20,6 +20,23 @@ Inspect candidate footage and audio at meaningful moments. Use [media processing
 
 Do not equate a high-resolution file with a useful shot. Consider subject visibility, stability, motion direction, available handles for transitions, composition, readable text and the value of original sound. Retain rejected candidates only when their reason helps later editing. An extracted frame is a still reference, not a replacement for requested moving footage.
 
+## Order photos along the emotional arc
+
+A wedding film fails when a tearful photo lands in the comic opener or a childhood snapshot closes the film. Each template's `arc` (in `describe`) lists its sections in playing order with the moods they want; `arrange` places the photos along it from tags you write after looking.
+
+1. Look at every photo (`creative/contact-sheet.jpg` after `init`, or the files themselves). Do not tag from file names.
+2. Write `creative/photo-tags.json`: `{"photos": {"PHOTO_ID": {...}}}` with, per photo, only what you can see or were told:
+   - `mood`: one or two of `nostalgic` (childhood, old photos), `funny` (silly faces, gags), `sweet` (everyday dating, travel, meals), `romantic` (the couple close, the wedding shoot), `moving` (vows, tears, parents, the proposal), `joyful` (celebrations, friends, laughing groups).
+   - `subject`: `groom`, `bride`, `couple`, `family`, `friends` or `other`.
+   - `when`: `YYYY`, `YYYY-MM` or `YYYY-MM-DD`, from the user or clearly visible evidence, never guessed. Chronological sections use it.
+   - `set`: a label shared by photos from one shoot or outfit. Slots that show one set, and galleries, keep sets together.
+   - `slot`: pin a photo to a slot, for slots about something specific (`ARC_UNPINNED` names them, such as DV Story's pet or concert pages) or when the user chose the photo.
+   - `skip: true` for photos that must not appear (blurred, duplicates, someone the couple left out).
+3. Run `arrange --project PROJECT`. It fills named moments first (portraits, proposal, ending), then the other slots in film order, preferring the right subject, then the right orientation, then the right mood. `ARC_MISMATCH` means a slot got a photo that does not fit, because there was nothing better; `ARC_CROP` means the orientation is wrong for the frame.
+4. Show the user `creative/arc-sheet.jpg` (section by section, mismatches in red) and ask whether the emotional order is right, before sampling. Apply their changes as pins or skips and run `arrange` again.
+
+`arrange` rewrites `props.photos` and keeps everything else in `inputs.json`; `creative/arc.json` records what went where and why.
+
 ## Make an actionable scene plan
 
 For each scene, state its approximate timeline range, information goal, picture source, visible action or change, on-screen copy, sound and acceptance check. Describe what the viewer should understand from the change and how it leads into the next scene. A short film may need only a few rows in the existing brief or `creative/storyboard.md`; do not create a large dossier for a one-line change.

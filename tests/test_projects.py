@@ -1006,8 +1006,9 @@ class KitReuseTests(unittest.TestCase):
             with self.subTest(template=template):
                 record = describe_template(KIT, template)
                 size = len(json.dumps(record, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
-                # Album has 27 slots, each with a placement hint; about 1.5k tokens is still far less than its source.
-                self.assertLess(size, 6144 if template == 'album' else 8192)
+                # Album has 27 slots, each with a placement hint, and Comedy 30 copy fields; with the emotional arc,
+                # about 2k tokens is still far less than their source.
+                self.assertLess(size, 6656 if template == 'album' else 8704)
                 self.assertTrue(record['copy'])
                 self.assertEqual(record['fixture'], load_catalog(KIT, template)['package']['fixture'])
         album = describe_template(KIT, 'album', '9:16')

@@ -69,6 +69,48 @@
       "hint": "closing couple photo, landscape works best"
     }
   },
+  "arc": [
+    {
+      "id": "opening",
+      "mood": [
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "opening",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "mood": [
+        "romantic",
+        "joyful",
+        "sweet"
+      ],
+      "slots": [
+        "gallery"
+      ]
+    },
+    {
+      "id": "ending",
+      "mood": [
+        "moving",
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "ending",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    }
+  ],
   "sample": {
     "from": 2,
     "to": 14

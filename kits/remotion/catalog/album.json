@@ -266,6 +266,128 @@
       "hint": "wedding photos, grouped by set (outfit)"
     }
   },
+  "arc": [
+    {
+      "id": "opening",
+      "mood": [
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "opening",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "portraits",
+      "mood": [
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "bride",
+          "subject": [
+            "bride"
+          ]
+        },
+        {
+          "slot": "groom",
+          "subject": [
+            "groom"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "love-story",
+      "mood": [
+        "sweet",
+        "joyful"
+      ],
+      "order": "chronological",
+      "slots": [
+        {
+          "slot": "duoWide",
+          "subject": [
+            "couple"
+          ]
+        },
+        {
+          "slot": "duoTall",
+          "subject": [
+            "couple"
+          ]
+        },
+        {
+          "slot": "storyWide",
+          "subject": [
+            "couple"
+          ]
+        },
+        {
+          "slot": "storyTall",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wedding-shoot",
+      "mood": [
+        "romantic",
+        "moving"
+      ],
+      "slots": [
+        "poem",
+        "beachBig",
+        "beachSmall",
+        "rise",
+        "drop",
+        "pairTall",
+        "pairWide",
+        "panels",
+        "endless",
+        "quoteBig",
+        "quoteSmall",
+        "foreverMid",
+        "foreverLeft",
+        "foreverRight",
+        "glow",
+        "handwriting",
+        "prints",
+        "vertical"
+      ]
+    },
+    {
+      "id": "gallery",
+      "mood": [
+        "romantic",
+        "joyful"
+      ],
+      "slots": [
+        "gallery"
+      ]
+    },
+    {
+      "id": "ending",
+      "mood": [
+        "moving",
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "ending",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    }
+  ],
   "sample": {
     "from": 35,
     "to": 50

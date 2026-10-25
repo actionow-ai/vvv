@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 — 2026-10-25
+
+- **Photos in emotional order.** Every template's catalog now carries its `arc`: the film's sections in playing order, the moods they want and their slots, shown by `describe`. The agent tags each photo after looking at it (`mood`, `subject`, `when`, `set`, or a `slot` pin) in `creative/photo-tags.json`, and `vvv.py arrange` places them: named moments first, then by subject, orientation and mood, sets kept together, chronological sections by date. It writes `creative/arc-sheet.jpg` for the user to confirm before rendering, and reports `ARC_MISMATCH` and `ARC_CROP` where it had to compromise.
+- **Style presets.** `vvv.py style save` keeps an approved project's settled choices (template options, chosen copy such as the studio name, music, approved rules and arc preferences) under `~/.vvv/styles/`; `style apply` or `init --style NAME` brings them to the next project, and a preset that does not fit changes nothing.
+
 ## 0.1.1 — 2026-10-23
 
 - **The agent sets everything up.** `vvv.py doctor` checks Python, Pillow, Node.js, npm, the kit and, with `--project`, a project's dependencies, downloads and inputs; every gap comes with its fix. Every helper failure, and `npm run music`/`sample`/`render` failures, now carry `next`: a command for the agent to run, one sentence to ask the user, or a hint. The skill tells the agent to run `doctor` first and never hand the user a command.

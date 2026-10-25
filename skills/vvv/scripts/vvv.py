@@ -135,6 +135,12 @@ def next_step(code, args):
         'TOOL_MISSING': (run('npm', 'ci', cwd=project, then='Rerun the command.') if project else
                          fix('Run the command with --project, or pass --ffmpeg and --ffprobe.')),
         'PACKAGE_INVALID': ask_user('This .vvv package failed verification, so I will not use it. Do you have another copy?'),
+        'TAGS_MISSING': fix('Look at creative/contact-sheet.jpg (or the photos), write creative/photo-tags.json '
+                            '(see references/story-editing.md) and run arrange again.'),
+        'TAGS_INVALID': fix('Correct creative/photo-tags.json as the message says and run arrange again.'),
+        'ARRANGE_INVALID': fix('The arranged photos do not validate; fix the tags (pins, skips) or pass --allow-repeat.'),
+        'STYLE_NOT_FOUND': run(sys.executable, SCRIPT, 'style', 'list'),
+        'STYLE_INVALID': fix('Fix the preset\'s style.json, or apply only the parts that fit this template.'),
         'INTERNAL_ERROR': fix('Rerun with VVV_DEBUG=1 for a traceback; if it persists, report it at '
                               'https://github.com/actionow-ai/vvv/issues.'),
     }
@@ -204,6 +210,23 @@ def main(argv=None):
                         help='Use the template\'s shipped demo photos and copy: a correctly mapped first render.')
     init.add_argument('--output', required=True, type=Path)
     init.add_argument('--allow-repeat', action='store_true')
+    init.add_argument('--style', help='A saved style preset (name or path) to apply to the new project.')
+    arrange = commands.add_parser('arrange', help='Place the photos along the template\'s emotional arc from creative/photo-tags.json.')
+    arrange.add_argument('--project', required=True, type=Path)
+    arrange.add_argument('--allow-repeat', action='store_true')
+    style = commands.add_parser('style', help='Save, list and apply style presets that carry settled choices across films.')
+    styles = style.add_subparsers(dest='style_command', required=True)
+    styles.add_parser('list', help='Saved presets.')
+    style_save = styles.add_parser('save', help='Save an approved project\'s choices as a preset.')
+    style_save.add_argument('--project', required=True, type=Path)
+    style_save.add_argument('--name', required=True)
+    style_save.add_argument('--keep', action='append', default=[], help='A props path to keep, e.g. copy.thanks (repeatable).')
+    style_save.add_argument('--constraint', action='append', default=[], help='A rule for every film (repeatable).')
+    style_save.add_argument('--description')
+    style_save.add_argument('--replace', action='store_true', help='Update an existing preset of that name.')
+    style_apply = styles.add_parser('apply', help='Apply a preset to a project.')
+    style_apply.add_argument('--project', required=True, type=Path)
+    style_apply.add_argument('--style', required=True, help='Preset name or path.')
     check = commands.add_parser('check', help='Measure a rendered video: format, sound, still holds and beat sync.')
     check.add_argument('--project', type=Path, help='Use the project format, limits and beat map.')
     check.add_argument('--video', type=Path, help='Defaults to the most recent sample or render report output.')
@@ -275,8 +298,27 @@ def main(argv=None):
             import vvv_package
             result = vvv_package.add_effect(args.project, args.effect)
         elif args.command == 'init':
+            import vvv_style
+            preset = vvv_style.resolve(args.style) if args.style else None  # fail before creating anything
             result = create_project(args.kit, args.template, args.photos, args.output, args.allow_repeat,
                                     args.frame_format, args.example)
+            if preset:
+                try:
+                    result['style'] = vvv_style.apply(result['project'], preset)
+                except BaseException:
+                    shutil.rmtree(result['project'], ignore_errors=True)
+                    raise
+        elif args.command == 'arrange':
+            from vvv_arc import arrange as arrange_photos
+            result = arrange_photos(args.project, args.allow_repeat)
+        elif args.command == 'style':
+            import vvv_style
+            if args.style_command == 'list':
+                result = {'status': 'passed', 'directory': str(vvv_style.styles_dir()), 'styles': vvv_style.list_styles()}
+            elif args.style_command == 'save':
+                result = vvv_style.save(args.project, args.name, args.keep, args.constraint, args.description, args.replace)
+            else:
+                result = vvv_style.apply(args.project, args.style)
         elif args.command == 'pack':
             import vvv_package
             chosen = [x for x in (args.template, args.effect, args.project) if x]

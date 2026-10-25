@@ -152,6 +152,78 @@
       "hint": "closing couple shot, landscape"
     }
   },
+  "arc": [
+    {
+      "id": "record",
+      "mood": [
+        "sweet",
+        "joyful"
+      ],
+      "slots": [
+        {
+          "slot": "thumb",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "portraits",
+      "mood": [
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "groomSolo",
+          "subject": [
+            "groom"
+          ]
+        },
+        {
+          "slot": "brideSolo",
+          "subject": [
+            "bride"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pages",
+      "mood": [
+        "romantic",
+        "sweet",
+        "joyful"
+      ],
+      "slots": [
+        "poem",
+        "camera",
+        "forever",
+        "loveBig",
+        "loveSmall",
+        "soul",
+        "soulWide",
+        "oneLove",
+        "ever",
+        "everWide"
+      ]
+    },
+    {
+      "id": "closing",
+      "mood": [
+        "moving",
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "us",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    }
+  ],
   "sample": {
     "from": 18,
     "to": 36

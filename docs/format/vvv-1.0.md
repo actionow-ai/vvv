@@ -46,13 +46,13 @@ The extension is `.vvv`. Older, unrelated programs have used the same extension,
 | `check/*.json` | no | Measurements of renders of this package (evidence) |
 | `inputs.json` | yes | `{ "template": id, "props": {…} }`; demo inputs for a template, real inputs for a project |
 | `assets.json` | yes | Photo registry; each item's `file` is relative to `public/` |
-| `catalog/<id>.json` | template, effect | Composition ID, formats, slots, music and check thresholds. A format may list `slots`: the photo slots it uses, when it leaves some out (for example a vertical short); the others may stay empty in that format |
+| `catalog/<id>.json` | template, effect | Composition ID, formats, slots, the emotional `arc` (sections in playing order, the moods they want and their slots), music and check thresholds. A format may list `slots`: the photo slots it uses, when it leaves some out (for example a vertical short); the others may stay empty in that format |
 | `src/` | yes | Editable scenes; `src/index.tsx` registers the composition; `src/effects/<id>/` holds effects |
 | `public/` | yes | Photos, artwork, fonts and their licenses, beat maps |
 | `scripts/` | yes | Render, music fetch, beat analysis and font verification scripts |
 | `package.json`, `package-lock.json` | yes | Pinned runtime; install with `npm ci` |
 | `font-sources.json` | yes | Source, hash and license of every packaged font file |
-| `creative/`, `out/*.report.json`, `PROJECT.md` | project | Brief, decisions, contact sheets, render reports |
+| `creative/`, `out/*.report.json`, `PROJECT.md` | project | Brief, decisions, contact sheets, photo tags and the arranged emotional arc (`photo-tags.json`, `arc.json`, `arc-sheet.jpg`), an applied style preset (`style.json`), render reports |
 
 Packages never contain `node_modules/`, `build/`, rendered media in `out/`, `.env` files or download-only media.
 

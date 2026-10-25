@@ -80,6 +80,8 @@ Best with an image-capable agent. With Claude Code and Codex both installed, Cla
 
 ## Also included
 
+- **Photos in emotional order:** every template maps its emotional sections (laughs before tears, first date to wedding). The agent looks at each photo, tags who is in it, its mood and when it was taken, places it in the matching section, and shows you the order before rendering.
+- **Style presets:** settle the opening rule, the music and the studio name once, save them, and every later film starts from them.
 - **Render checks:** `vvv check` measures format, audio, still stretches and beat alignment, then lists what only a viewer can judge.
 - **Handoff:** pack a template, effect or finished project as one [`.vvv` file](docs/format/vvv-1.0.md) with its code, media licenses and render evidence, so any agent can continue it.
 - **Footage tools:** a local FFmpeg helper probes media, cuts ranges, extracts audio and samples frames ([walkthrough](examples/media-workflow.md)).

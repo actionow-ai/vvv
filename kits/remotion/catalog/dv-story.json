@@ -268,6 +268,159 @@
       "hint": "proposal photos"
     }
   },
+  "arc": [
+    {
+      "id": "births",
+      "mood": [
+        "nostalgic"
+      ],
+      "slots": [
+        {
+          "slot": "birth1",
+          "subject": [
+            "groom"
+          ]
+        },
+        {
+          "slot": "birth2",
+          "subject": [
+            "bride"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "childhood",
+      "mood": [
+        "nostalgic"
+      ],
+      "order": "chronological",
+      "slots": [
+        "childhood"
+      ]
+    },
+    {
+      "id": "meeting",
+      "mood": [
+        "sweet"
+      ],
+      "order": "chronological",
+      "slots": [
+        {
+          "slot": "fate",
+          "pin": true
+        },
+        {
+          "slot": "first",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "together",
+      "mood": [
+        "sweet",
+        "joyful",
+        "funny"
+      ],
+      "slots": [
+        {
+          "slot": "travel",
+          "pin": true
+        },
+        {
+          "slot": "birthday",
+          "pin": true
+        },
+        {
+          "slot": "concert",
+          "pin": true
+        },
+        {
+          "slot": "funny",
+          "mood": [
+            "funny"
+          ],
+          "pin": true
+        },
+        {
+          "slot": "friends",
+          "pin": true
+        },
+        {
+          "slot": "festival",
+          "pin": true
+        },
+        {
+          "slot": "park",
+          "pin": true
+        },
+        {
+          "slot": "food",
+          "pin": true
+        },
+        {
+          "slot": "cat",
+          "pin": true
+        },
+        {
+          "slot": "ski",
+          "pin": true
+        },
+        {
+          "slot": "friendsWedding",
+          "pin": true
+        },
+        {
+          "slot": "newYear",
+          "pin": true
+        },
+        {
+          "slot": "flowers",
+          "pin": true
+        },
+        {
+          "slot": "meals",
+          "pin": true
+        },
+        {
+          "slot": "rituals",
+          "pin": true
+        },
+        {
+          "slot": "newHome",
+          "pin": true
+        }
+      ]
+    },
+    {
+      "id": "wedding",
+      "mood": [
+        "romantic",
+        "moving"
+      ],
+      "order": "chronological",
+      "slots": [
+        {
+          "slot": "proposal",
+          "mood": [
+            "moving",
+            "romantic"
+          ]
+        },
+        {
+          "slot": "engaged",
+          "mood": [
+            "romantic",
+            "joyful"
+          ]
+        },
+        "weddingPhotos"
+      ]
+    }
+  ],
   "sample": {
     "from": 60,
     "to": 80

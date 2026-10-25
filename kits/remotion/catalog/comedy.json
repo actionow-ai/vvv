@@ -193,6 +193,115 @@
       "hint": "wedding photos, grouped by set (outfit)"
     }
   },
+  "arc": [
+    {
+      "id": "meet-the-groom",
+      "mood": [
+        "funny"
+      ],
+      "slots": [
+        {
+          "slot": "groomKid",
+          "subject": [
+            "groom"
+          ],
+          "mood": [
+            "nostalgic",
+            "funny"
+          ]
+        },
+        {
+          "slot": "groomHero",
+          "subject": [
+            "groom"
+          ],
+          "mood": [
+            "romantic",
+            "joyful"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meet-the-bride",
+      "mood": [
+        "funny"
+      ],
+      "slots": [
+        {
+          "slot": "brideKid",
+          "subject": [
+            "bride"
+          ],
+          "mood": [
+            "nostalgic",
+            "funny"
+          ]
+        },
+        {
+          "slot": "brideHero",
+          "subject": [
+            "bride"
+          ],
+          "mood": [
+            "romantic",
+            "joyful"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "love-story",
+      "mood": [
+        "sweet",
+        "funny"
+      ],
+      "order": "chronological",
+      "slots": [
+        "love"
+      ]
+    },
+    {
+      "id": "proposal",
+      "mood": [
+        "moving",
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "proposal",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "mood": [
+        "romantic",
+        "joyful"
+      ],
+      "slots": [
+        "gallery"
+      ]
+    },
+    {
+      "id": "finale",
+      "mood": [
+        "moving",
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "finale",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    }
+  ],
   "sample": {
     "from": 40,
     "to": 62

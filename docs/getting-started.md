@@ -36,6 +36,10 @@ Or bring a film you like and your own material:
 
 Not sure which style fits? Ask the agent to show the templates, or browse them on the [website](https://vibevision.video/templates/) and in [templates](templates.md). Names, dates and events come from you; the agent asks when something is missing instead of making it up.
 
+Before rendering, the agent looks at every photo and places it along the template's emotional line (the childhood photos in the opening gag, the proposal before the tears), then shows you the order to confirm.
+
+Making many films, for a studio or a series? Ask the agent to save the look as a style preset once you are happy: the opening rule, music, studio name and other settled choices. Name the preset in the next request and the film starts from it.
+
 ## 3. Watch the sample and give feedback
 
 Before the full film, the agent renders a short sample of the hardest part and checks it automatically: format, sound, nothing frozen on screen, cuts on the beat. Watch it and say what to change in plain words, for example "use the beach photo for the opening", "the text is too small" or "slower in the middle". The agent changes the inputs, or the template's code when needed, and samples again.

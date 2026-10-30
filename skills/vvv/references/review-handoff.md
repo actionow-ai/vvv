@@ -37,4 +37,6 @@ Lead with the playable output: sample or full film, duration, dimensions, sound,
 - where to change copy, photos, music and timing;
 - what was checked (frames, playback, listening), and anything open: missing facts, unlicensed placeholders, uninspected ranges.
 
+Upload to the user's cloud drive or create a share link only when they ask; see [cloud storage](cloud-storage.md).
+
 The project must run on its own after `npm ci` and `npm run music`: no dependency on the original kit checkout, another project's `node_modules`, private folders or temporary URLs. Keep technical logs in the project instead of the message. Never include credentials or unrelated source material.

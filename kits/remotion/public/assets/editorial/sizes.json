@@ -1,0 +1,32 @@
+{
+  "couple": {
+    "width": 291,
+    "height": 480,
+    "source": "Codex image generation via the c2c route, editorial-couple-af2ce8b2785b4891a819e6d6504986c1",
+    "sourceSha256": "44590e0a772a90871e9d4827ebe8e0ea60dd13a443543bcc5d94093b04dc82bf"
+  },
+  "flourish": {
+    "width": 357,
+    "height": 240,
+    "source": "Codex image generation via the c2c route, editorial-flourish-b51bd8a50953439ba0f7a33e6009203c",
+    "sourceSha256": "7c97229413b0911de5224a8e4936a44fbf5ba8778dd93e1ea4d0471dc85833f9"
+  },
+  "rings": {
+    "width": 288,
+    "height": 240,
+    "source": "Codex image generation via the c2c route, editorial-rings-99d91f351e63416485343cbced8a3293",
+    "sourceSha256": "ea71fa6b767590b52852e15b617601f25b594f67dfcd9e68532750f8a8959c5d"
+  },
+  "title-cover": {
+    "width": 1188,
+    "height": 800,
+    "source": "Codex image generation via the c2c route, editorial-title-cover-4683d5146b9c4d87ae2693987d16f067",
+    "sourceSha256": "57ac44d820e5037b2ad1bd8615e45afc8ac7d84a56f71cbc7f39890fbaa52e81"
+  },
+  "title-romance": {
+    "width": 897,
+    "height": 1100,
+    "source": "Codex image generation via the c2c route, editorial-title-romance-2566fbf3b1ec437c864305885c733e3d",
+    "sourceSha256": "dbe8858a2956f45faed45681884ab0f7ed0ff4d73721837773206fdc9a64a3de"
+  }
+}

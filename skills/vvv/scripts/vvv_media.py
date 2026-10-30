@@ -127,13 +127,24 @@ def compositor_tool(name, project):
                 folders[0] / executable if folders else Path(project) / 'node_modules' / '@remotion' / executable)
 
 
+def default_kit():
+    """The kit beside this skill or in $VVV_KIT; its renderer install carries Remotion's FFmpeg."""
+    if os.environ.get('VVV_KIT'):
+        return Path(os.environ['VVV_KIT']).expanduser()
+    return Path(__file__).resolve().parents[3] / 'kits' / 'remotion'
+
+
 def find_tool(name, explicit, project):
+    """An explicit path, then PATH, then Remotion's FFmpeg in the project, then in the kit."""
     if explicit:
         candidate = Path(explicit).expanduser()
     elif shutil.which(name):
         candidate = Path(shutil.which(name))
     else:
         candidate = compositor_tool(name, project)
+        kit = default_kit()
+        if not candidate.is_file() and (kit / 'node_modules').is_dir():
+            candidate = compositor_tool(name, kit)
     if not candidate.is_file():
         raise MediaError('tool_missing', '%s not found; install it yourself or provide --%s.' % (name, name))
     if not os.access(candidate, os.X_OK):

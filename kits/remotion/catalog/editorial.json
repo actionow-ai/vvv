@@ -1,0 +1,347 @@
+{
+  "id": "editorial",
+  "version": "1.0.0",
+  "compositionId": "VVV-Editorial",
+  "title": "Editorial · 简约留白 · 杂志婚礼 MV",
+  "description": "白纸上的杂志排版：手写红字封面、圆形双人请柬配丝带蝴蝶结、照片配诗句、三联图上浮、爱心展开满屏、三栏长图生长、囍字与手写“浪漫主义者”，柔白光斑擦除换页，约 1 分 25 秒，每页卡在 When in Love 的乐句上。",
+  "formats": {
+    "16:9": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "defaultFormat": "16:9",
+  "music": {
+    "required": true
+  },
+  "check": {
+    "maxStillSeconds": 3
+  },
+  "defaultProps": {
+    "couple": {
+      "groom": "沈知远",
+      "bride": "林晚晴",
+      "groomEn": "SHEN ZHIYUAN",
+      "brideEn": "LIN WANQING",
+      "date": "2026-05-20",
+      "tagline": "我们结婚啦"
+    },
+    "photos": {
+      "cover": "",
+      "invite": [],
+      "poem": "",
+      "trio": [],
+      "pair": [],
+      "thanks": [],
+      "caption": [],
+      "heart": "",
+      "xi": [],
+      "about": [],
+      "triptych": [],
+      "collage": [],
+      "romance": "",
+      "ending": ""
+    },
+    "copy": {
+      "cover_title": "我们的｜婚礼",
+      "cover_en": "WELCOME TO OUR WEDDING",
+      "invite_head": "WEDDING INVITATION",
+      "invite_ask": "Would you marry me?",
+      "invite_yes": "Yes, I do.",
+      "poem": "遇见你的那天｜风也变得很温柔｜往后的每一个清晨与黄昏｜都想和你一起慢慢走｜｜愿余生岁岁年年｜都有你在身旁",
+      "poem_en": "Of all the roads I could have taken,｜every one led me to you,｜and I would walk them all again.",
+      "trio_kicker": "I LOVE YOU｜FOR YOU",
+      "trio_quote": "喜欢你的笑｜也喜欢笑着的我们",
+      "pair_quote_a": "“在人海里，偏偏遇见你”",
+      "pair_quote_b": "“爱是日常，也是一生”",
+      "pair_tag": "FOREVER IN LOVE",
+      "thanks": "谢谢时光｜让我们刚好遇见｜｜从那天起｜每一天都是好日子",
+      "caption": "从此我们相识、相知、相爱，再也不分开",
+      "heart_lines": "我们决定牵起彼此的手｜把平凡的日子过成诗｜一起去看更远的风景",
+      "heart_en": "Two hearts, one home,｜one story still being written.",
+      "xi_lines": "日子平平淡淡，有你就很好｜一粥一饭，一朝一夕｜都是我们的小幸福",
+      "about_kicker": "· About Love ·",
+      "about_title": "WE GOT MARRIED",
+      "collage_kicker": "LOVE｜PURE LOVE",
+      "collage_lines": "红妆十里，良辰已至｜愿我们岁岁年年，喜乐平安｜把每一个平凡的日子都过成节日",
+      "romance_title": "永远的｜浪漫｜主义者",
+      "romance_lines": "把这份浪漫写进日子里｜把这份心动留给每一天｜也分享给今天的你们",
+      "vow": "我们会坚守｜今天许下的诺言｜未来的路一起走｜风雨同舟，甘苦与共｜相伴一生",
+      "thank_you": "THANK YOU"
+    },
+    "music": {
+      "src": "music/mixkit-when-in-love.mp3",
+      "volume": 0.9,
+      "trimBeforeSec": 0,
+      "fadeInSec": 0.3,
+      "fadeOutSec": 3
+    },
+    "fps": 30,
+    "pace": 1
+  },
+  "slots": {
+    "cover": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "opening couple portrait, full length, portrait orientation"
+    },
+    "invite": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "groom portrait then bride portrait (or two couple shots), shown in circles"
+    },
+    "poem": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "playful couple portrait beside the poem, portrait orientation"
+    },
+    "trio": {
+      "kind": "array",
+      "count": 3,
+      "min": 3,
+      "hint": "3 portrait couple shots, one outfit",
+      "groups": [
+        3
+      ]
+    },
+    "pair": {
+      "kind": "array",
+      "count": 4,
+      "min": 4,
+      "hint": "two spreads of portrait then landscape; each spread one outfit, the second spread another",
+      "groups": [
+        2,
+        2
+      ]
+    },
+    "thanks": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "2 portrait couple shots, one outfit",
+      "groups": [
+        2
+      ]
+    },
+    "caption": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "portrait, then landscape couple shot, one outfit",
+      "groups": [
+        2
+      ]
+    },
+    "heart": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "full-bleed couple shot, landscape"
+    },
+    "xi": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "landscape, then portrait couple shot, one outfit",
+      "groups": [
+        2
+      ]
+    },
+    "about": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "2 portrait couple shots, one outfit",
+      "groups": [
+        2
+      ]
+    },
+    "triptych": {
+      "kind": "array",
+      "count": 6,
+      "min": 6,
+      "hint": "two rows of 3 tall portrait shots; each row one outfit, the second row another",
+      "groups": [
+        3,
+        3
+      ]
+    },
+    "collage": {
+      "kind": "array",
+      "count": 3,
+      "min": 3,
+      "hint": "3 shots of one outfit (Chinese dress works well): tall portrait first",
+      "groups": [
+        3
+      ]
+    },
+    "romance": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "couple portrait beside the handwritten title"
+    },
+    "ending": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "closing couple portrait"
+    }
+  },
+  "arc": [
+    {
+      "id": "opening",
+      "mood": [
+        "romantic"
+      ],
+      "slots": [
+        {
+          "slot": "cover",
+          "subject": [
+            "couple"
+          ]
+        },
+        "invite"
+      ]
+    },
+    {
+      "id": "story",
+      "mood": [
+        "sweet",
+        "joyful",
+        "romantic"
+      ],
+      "slots": [
+        "poem",
+        "trio",
+        "pair",
+        "thanks",
+        "caption"
+      ]
+    },
+    {
+      "id": "peak",
+      "mood": [
+        "romantic",
+        "moving"
+      ],
+      "slots": [
+        {
+          "slot": "heart",
+          "subject": [
+            "couple"
+          ]
+        },
+        "xi",
+        "about",
+        "triptych"
+      ]
+    },
+    {
+      "id": "closing",
+      "mood": [
+        "moving",
+        "romantic"
+      ],
+      "slots": [
+        "collage",
+        "romance",
+        {
+          "slot": "ending",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    }
+  ],
+  "sample": {
+    "from": 0,
+    "to": 16
+  },
+  "package": {
+    "name": "@vvv/editorial",
+    "fixture": "examples/editorial-wedding.json",
+    "authors": [
+      "VVV"
+    ],
+    "license": "MIT"
+  },
+  "shows": {
+    "couple": {
+      "groom": "cover, invitation, ending",
+      "bride": "cover, invitation, ending",
+      "date": "ending, under THANK YOU",
+      "tagline": "cover, top right"
+    }
+  },
+  "timeline": {
+    "pages": [
+      {
+        "id": "cover",
+        "beats": 8
+      },
+      {
+        "id": "invite",
+        "beats": 8
+      },
+      {
+        "id": "poem",
+        "beats": 8
+      },
+      {
+        "id": "trio",
+        "beats": 8
+      },
+      {
+        "id": "pair",
+        "beats": 16
+      },
+      {
+        "id": "thanks",
+        "beats": 8
+      },
+      {
+        "id": "caption",
+        "beats": 8
+      },
+      {
+        "id": "heart",
+        "beats": 8
+      },
+      {
+        "id": "xi",
+        "beats": 8
+      },
+      {
+        "id": "about",
+        "beats": 8
+      },
+      {
+        "id": "columns",
+        "beats": 16
+      },
+      {
+        "id": "collage",
+        "beats": 8
+      },
+      {
+        "id": "romance",
+        "beats": 8
+      },
+      {
+        "id": "ending",
+        "beats": 12
+      }
+    ],
+    "climax": "heart",
+    "pace": {
+      "prop": "pace",
+      "min": 1,
+      "max": 2
+    }
+  }
+}

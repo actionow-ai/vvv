@@ -299,6 +299,154 @@
       ]
     },
     {
+      "id": "cinema",
+      "kind": "template",
+      "title": "Cinema · 黑幕影院 · 婚礼开场",
+      "description": "婚礼现场大屏用的黑底开场片：黄昏天空上打字“欢迎来到我们的婚礼” → 两张圆角童年照配姓名与生日 → 四张童年照从两侧滑入 → 一条线、相遇日期，线里展开第一张合照 → “一起走过 N 天”计数 → 恋爱照片一栏一栏铺满 → 婚纱照 → 一句话 → 线描新人与致谢，约 1 分 55 秒，每页卡在 Possible Dreams 的小节上。",
+      "version": "1.0.0",
+      "package": "@vvv/cinema",
+      "defaultFormat": "16:9",
+      "formats": [
+        {
+          "name": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "minPhotos": 25,
+          "targetPhotos": 25,
+          "sample": {
+            "from": 0,
+            "to": 20
+          }
+        }
+      ],
+      "slotsByFormat": {
+        "16:9": {
+          "slots": [
+            {
+              "name": "kidGroom",
+              "kind": "single",
+              "hint": "新郎小时候的照片（圆角近方形）"
+            },
+            {
+              "name": "kidBride",
+              "kind": "single",
+              "hint": "新娘小时候的照片（圆角近方形）"
+            },
+            {
+              "name": "childhood",
+              "kind": "array",
+              "count": 4,
+              "hint": "童年到少年的 4 张照片，左两张新郎、右两张新娘（圆角方形，从两侧滑入）"
+            },
+            {
+              "name": "first",
+              "kind": "single",
+              "hint": "相遇或最早的一张合照，横图，从一条线里展开成满屏"
+            },
+            {
+              "name": "dating",
+              "kind": "array",
+              "count": 6,
+              "hint": "恋爱时的 6 张，三张一组竖条满屏，先三张后三张"
+            },
+            {
+              "name": "dating2",
+              "kind": "array",
+              "count": 3,
+              "hint": "恋爱后段的 3 张（异地、求婚等），竖条满屏"
+            },
+            {
+              "name": "wedding",
+              "kind": "single",
+              "hint": "一张横版婚纱照，满屏"
+            },
+            {
+              "name": "pairs",
+              "kind": "array",
+              "count": 4,
+              "hint": "4 张竖版婚纱照，两张并排，先一对后一对"
+            },
+            {
+              "name": "trio",
+              "kind": "array",
+              "count": 3,
+              "hint": "3 张竖版婚纱照，三栏"
+            },
+            {
+              "name": "closing",
+              "kind": "single",
+              "hint": "一张笑得最开心的近景，横图满屏"
+            }
+          ],
+          "unusedSlots": []
+        }
+      },
+      "copy": {
+        "welcome_1": "开场 · 第一行打字",
+        "welcome_2": "开场 · 第二行打字",
+        "groom_label": "童年页 · 新郎称呼",
+        "bride_label": "童年页 · 新娘称呼",
+        "born_prefix": "童年页 · 生日前缀",
+        "grow_title": "童年四图 · 标题",
+        "grow_lines": "童年四图 · 下方两行（用｜分隔）",
+        "met_line": "相遇页 · 日期下的一句",
+        "counter_head": "计数页 · 上方小字",
+        "counter_unit": "计数页 · 数字后的单位",
+        "hearts": "恋爱中段 · 打字一句（可用｜分两行）",
+        "today": "婚礼前 · 打字一句",
+        "quote": "结尾前 · 打字两行（用｜分隔）",
+        "thanks": "结尾 · 致谢两行（用｜分隔）"
+      },
+      "couple": {
+        "groom": "新郎姓名",
+        "bride": "新娘姓名",
+        "groomEn": "新郎英文名或拼音",
+        "brideEn": "新娘英文名或拼音",
+        "date": "婚礼日期",
+        "tagline": "主标题"
+      },
+      "props": {
+        "beatGrid": {
+          "type": "null | object"
+        },
+        "pace": {
+          "type": "number",
+          "description": "节奏：每页时长的倍数。1 为默认；1.5 让每页停留更久，全片随之变长"
+        },
+        "since": {
+          "type": "string",
+          "description": "相遇或在一起的日期（YYYY-MM-DD）：相遇页显示它，计数页算到婚礼日期的天数"
+        },
+        "groomBorn": {
+          "type": "string",
+          "description": "新郎生日（YYYY-MM-DD），童年页显示"
+        },
+        "brideBorn": {
+          "type": "string",
+          "description": "新娘生日（YYYY-MM-DD），童年页显示"
+        }
+      },
+      "music": {
+        "required": true,
+        "src": "music/mixkit-possible-dreams.mp3",
+        "downloadOnly": true
+      },
+      "fixture": "examples/cinema-wedding.json",
+      "sourceUrl": "https://github.com/actionow-ai/vvv/tree/main/kits/remotion/src/templates/cinema",
+      "previews": [
+        {
+          "format": "16:9",
+          "video": "https://vibevision.video/media/cinema.mp4",
+          "poster": "https://vibevision.video/media/cinema.jpg",
+          "width": 960,
+          "height": 540,
+          "from": 0,
+          "to": 115.84,
+          "fullSeconds": 115.833
+        }
+      ]
+    },
+    {
       "id": "comedy",
       "kind": "template",
       "title": "Comedy · 喜剧开场 · 婚礼即将开始",
@@ -946,6 +1094,372 @@
           "from": 0,
           "to": 182.549,
           "fullSeconds": 182.533
+        }
+      ]
+    },
+    {
+      "id": "editorial",
+      "kind": "template",
+      "title": "Editorial · 简约留白 · 杂志婚礼 MV",
+      "description": "白纸上的杂志排版：手写红字封面、圆形双人请柬配丝带蝴蝶结、照片配诗句、三联图上浮、爱心展开满屏、三栏长图生长、囍字与手写“浪漫主义者”，柔白光斑擦除换页，约 1 分 25 秒，每页卡在 When in Love 的乐句上。",
+      "version": "1.0.0",
+      "package": "@vvv/editorial",
+      "defaultFormat": "16:9",
+      "formats": [
+        {
+          "name": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "minPhotos": 31,
+          "targetPhotos": 31,
+          "sample": {
+            "from": 0,
+            "to": 16
+          }
+        }
+      ],
+      "slotsByFormat": {
+        "16:9": {
+          "slots": [
+            {
+              "name": "cover",
+              "kind": "single",
+              "hint": "opening couple portrait, full length, portrait orientation"
+            },
+            {
+              "name": "invite",
+              "kind": "array",
+              "count": 2,
+              "hint": "groom portrait then bride portrait (or two couple shots), shown in circles"
+            },
+            {
+              "name": "poem",
+              "kind": "single",
+              "hint": "playful couple portrait beside the poem, portrait orientation"
+            },
+            {
+              "name": "trio",
+              "kind": "array",
+              "count": 3,
+              "hint": "3 portrait couple shots, one outfit"
+            },
+            {
+              "name": "pair",
+              "kind": "array",
+              "count": 4,
+              "hint": "two spreads of portrait then landscape; each spread one outfit, the second spread another"
+            },
+            {
+              "name": "thanks",
+              "kind": "array",
+              "count": 2,
+              "hint": "2 portrait couple shots, one outfit"
+            },
+            {
+              "name": "caption",
+              "kind": "array",
+              "count": 2,
+              "hint": "portrait, then landscape couple shot, one outfit"
+            },
+            {
+              "name": "heart",
+              "kind": "single",
+              "hint": "full-bleed couple shot, landscape"
+            },
+            {
+              "name": "xi",
+              "kind": "array",
+              "count": 2,
+              "hint": "landscape, then portrait couple shot, one outfit"
+            },
+            {
+              "name": "about",
+              "kind": "array",
+              "count": 2,
+              "hint": "2 portrait couple shots, one outfit"
+            },
+            {
+              "name": "triptych",
+              "kind": "array",
+              "count": 6,
+              "hint": "two rows of 3 tall portrait shots; each row one outfit, the second row another"
+            },
+            {
+              "name": "collage",
+              "kind": "array",
+              "count": 3,
+              "hint": "3 shots of one outfit (Chinese dress works well): tall portrait first"
+            },
+            {
+              "name": "romance",
+              "kind": "single",
+              "hint": "couple portrait beside the handwritten title"
+            },
+            {
+              "name": "ending",
+              "kind": "single",
+              "hint": "closing couple portrait"
+            }
+          ],
+          "unusedSlots": []
+        }
+      },
+      "copy": {
+        "cover_title": "封面 · 手写标题（两行，用｜分隔）",
+        "cover_en": "封面 · 英文小字",
+        "invite_head": "请柬页 · 顶部英文",
+        "invite_ask": "请柬页 · 左圆弧形英文",
+        "invite_yes": "请柬页 · 右圆弧形英文",
+        "poem": "诗句页 · 诗句（用｜分行，空一段用｜｜）",
+        "poem_en": "诗句页 · 英文小字（用｜分行）",
+        "trio_kicker": "三联页 · 左上英文（两行，用｜分隔）",
+        "trio_quote": "三联页 · 右下一句（两行，用｜分隔）",
+        "pair_quote_a": "双图页 · 第一组顶部一句",
+        "pair_quote_b": "双图页 · 第二组顶部一句",
+        "pair_tag": "双图页 · 左下英文",
+        "thanks": "居中诗句页（用｜分行，空一段用｜｜）",
+        "caption": "双图页 · 底部打字一句",
+        "heart_lines": "爱心页 · 左下三行（用｜分隔）",
+        "heart_en": "爱心页 · 右上英文（用｜分隔）",
+        "xi_lines": "囍字页 · 三行（用｜分隔）",
+        "about_kicker": "竖排页 · 小标题",
+        "about_title": "竖排页 · 大标题",
+        "collage_kicker": "拼贴页 · 右上英文（两行，用｜分隔）",
+        "collage_lines": "拼贴页 · 小字（用｜分行）",
+        "romance_title": "手写大字（三行，用｜分隔）",
+        "romance_lines": "手写页 · 右下三行（用｜分隔）",
+        "vow": "结尾 · 誓言（用｜分行）",
+        "thank_you": "结尾 · 致谢英文"
+      },
+      "couple": {
+        "groom": "新郎姓名",
+        "bride": "新娘姓名",
+        "groomEn": "新郎英文名或拼音",
+        "brideEn": "新娘英文名或拼音",
+        "date": "婚礼日期",
+        "tagline": "主标题"
+      },
+      "props": {
+        "beatGrid": {
+          "type": "null | object"
+        },
+        "pace": {
+          "type": "number",
+          "description": "节奏：每页时长的倍数。1 为默认；1.5 让每页（每组照片）停留更久，全片随之变长"
+        }
+      },
+      "music": {
+        "required": true,
+        "src": "music/mixkit-when-in-love.mp3",
+        "downloadOnly": true
+      },
+      "fixture": "examples/editorial-wedding.json",
+      "sourceUrl": "https://github.com/actionow-ai/vvv/tree/main/kits/remotion/src/templates/editorial",
+      "previews": [
+        {
+          "format": "16:9",
+          "video": "https://vibevision.video/media/editorial.mp4",
+          "poster": "https://vibevision.video/media/editorial.jpg",
+          "width": 960,
+          "height": 540,
+          "from": 0,
+          "to": 85.333,
+          "fullSeconds": 85.333
+        }
+      ]
+    },
+    {
+      "id": "memoir",
+      "kind": "template",
+      "title": "Memoir · 手写胶片故事 · 婚礼开场",
+      "description": "黑底手写体讲两个人的一生：打字“欢迎来到我们的婚礼” → 胶片框照片配两句话 → 新人贴纸与彩纸 → 家乡地标和童年照贴纸 → 滚动的 35mm 胶片童年 → 聊天截图 → 四个章节 → 取景框里的领证照 → “爱是什么”四页 → 一封长信与致谢，约 2 分 35 秒，每页卡在 First Kiss 的小节上。",
+      "version": "1.0.0",
+      "package": "@vvv/memoir",
+      "defaultFormat": "16:9",
+      "formats": [
+        {
+          "name": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "minPhotos": 37,
+          "targetPhotos": 37,
+          "sample": {
+            "from": 0,
+            "to": 20
+          }
+        }
+      ],
+      "slotsByFormat": {
+        "16:9": {
+          "slots": [
+            {
+              "name": "intro",
+              "kind": "array",
+              "count": 4,
+              "hint": "4 张横版合照，套在胶片框里满屏，前两张、后两张各配一句话"
+            },
+            {
+              "name": "couple",
+              "kind": "single",
+              "hint": "新人全身合照，最好是抠好背景的 PNG（贴纸效果）；普通照片会显示成白边卡片"
+            },
+            {
+              "name": "homeGroom",
+              "kind": "single",
+              "hint": "新郎家乡的地标或美食，抠图 PNG 效果最好"
+            },
+            {
+              "name": "homeBride",
+              "kind": "single",
+              "hint": "新娘家乡的地标或美食，抠图 PNG 效果最好"
+            },
+            {
+              "name": "kidGroom",
+              "kind": "single",
+              "hint": "新郎小时候的照片，抠图 PNG 效果最好"
+            },
+            {
+              "name": "kidBride",
+              "kind": "single",
+              "hint": "新娘小时候的照片，抠图 PNG 效果最好"
+            },
+            {
+              "name": "childhood",
+              "kind": "array",
+              "count": 8,
+              "hint": "8 张童年、家人照片，横图，排在滚动的 35mm 胶片上"
+            },
+            {
+              "name": "chats",
+              "kind": "array",
+              "count": 3,
+              "hint": "3 张聊天截图（或竖图），叠在左侧"
+            },
+            {
+              "name": "ch1",
+              "kind": "array",
+              "count": 2,
+              "hint": "章节一的 2 张横图"
+            },
+            {
+              "name": "ch2",
+              "kind": "array",
+              "count": 2,
+              "hint": "章节二的 2 张横图"
+            },
+            {
+              "name": "ch3",
+              "kind": "array",
+              "count": 2,
+              "hint": "章节三的 2 张横图"
+            },
+            {
+              "name": "ch4",
+              "kind": "array",
+              "count": 2,
+              "hint": "章节四的 2 张横图"
+            },
+            {
+              "name": "license",
+              "kind": "single",
+              "hint": "领证或婚礼的一张横图，放在相机取景框里"
+            },
+            {
+              "name": "love1",
+              "kind": "array",
+              "count": 2,
+              "hint": "“爱是什么”第一页的 2 张照片（左侧竖框，先后两张）"
+            },
+            {
+              "name": "love2",
+              "kind": "array",
+              "count": 2,
+              "hint": "第二页的 2 张"
+            },
+            {
+              "name": "love3",
+              "kind": "array",
+              "count": 2,
+              "hint": "第三页的 2 张"
+            },
+            {
+              "name": "love4",
+              "kind": "array",
+              "count": 2,
+              "hint": "第四页的 2 张"
+            }
+          ],
+          "unusedSlots": []
+        }
+      },
+      "copy": {
+        "welcome": "开场 · 手写打字",
+        "intro_1": "胶片框照片 · 第一句（前两张照片上）",
+        "intro_2": "胶片框照片 · 第二句（后两张照片上）",
+        "thanks": "贴纸合影 · 右侧两行（用｜分隔）",
+        "born_title": "出生页 · 黄色标题",
+        "home_groom": "出生页 · 新郎家乡",
+        "home_bride": "出生页 · 新娘家乡",
+        "strip_1": "胶片条 · 前半句（可用｜分两行）",
+        "strip_2": "胶片条 · 后半句",
+        "jump": "时间跳转（{since} 是相识日期）",
+        "chat_lines": "聊天截图页 · 右侧几行（用｜分行）",
+        "into": "过渡一句",
+        "chapter_1": "章节一 · 标题",
+        "chapter_2": "章节二 · 标题",
+        "chapter_3": "章节三 · 标题",
+        "chapter_4": "章节四 · 标题",
+        "license": "领证页（用｜分行）",
+        "love_title": "“爱是什么”标题",
+        "love_1": "爱是什么 · 第一页右侧几行（用｜分行）",
+        "love_sub_1": "爱是什么 · 第一页底部小字",
+        "love_2": "爱是什么 · 第二页",
+        "love_sub_2": "爱是什么 · 第二页底部小字",
+        "love_3": "爱是什么 · 第三页",
+        "love_sub_3": "爱是什么 · 第三页底部小字",
+        "love_4": "爱是什么 · 第四页",
+        "love_sub_4": "爱是什么 · 第四页底部小字",
+        "letter": "结尾长信（用｜分行，每行一句）",
+        "ending": "致谢（用｜分行）"
+      },
+      "couple": {
+        "groom": "新郎姓名",
+        "bride": "新娘姓名",
+        "groomEn": "新郎英文名或拼音",
+        "brideEn": "新娘英文名或拼音",
+        "date": "婚礼日期",
+        "tagline": "主标题"
+      },
+      "props": {
+        "beatGrid": {
+          "type": "null | object"
+        },
+        "pace": {
+          "type": "number",
+          "description": "节奏：每页时长的倍数。1 为默认；1.5 让每页停留更久，全片随之变长"
+        },
+        "since": {
+          "type": "string",
+          "description": "相识日期（YYYY-MM-DD），时间跳转页显示"
+        }
+      },
+      "music": {
+        "required": true,
+        "src": "music/mixkit-first-kiss.mp3",
+        "downloadOnly": true
+      },
+      "fixture": "examples/memoir-wedding.json",
+      "sourceUrl": "https://github.com/actionow-ai/vvv/tree/main/kits/remotion/src/templates/memoir",
+      "previews": [
+        {
+          "format": "16:9",
+          "video": "https://vibevision.video/media/memoir.mp4",
+          "poster": "https://vibevision.video/media/memoir.jpg",
+          "width": 960,
+          "height": 540,
+          "from": 0,
+          "to": 154.837,
+          "fullSeconds": 154.833
         }
       ]
     },

@@ -1,0 +1,101 @@
+{
+  "template": "editorial",
+  "props": {
+    "couple": {
+      "groom": "沈知远",
+      "bride": "林晚晴",
+      "groomEn": "SHEN ZHIYUAN",
+      "brideEn": "LIN WANQING",
+      "date": "2026-05-20",
+      "tagline": "我们结婚啦"
+    },
+    "photos": {
+      "cover": "couple-08-wedding-s1-studio-06",
+      "invite": [
+        "couple-08-wedding-s1-studio-03",
+        "couple-08-wedding-s1-studio-02"
+      ],
+      "poem": "couple-08-wedding-s4-garden-01",
+      "trio": [
+        "couple-08-wedding-s4-garden-03",
+        "couple-08-wedding-s4-garden-05",
+        "couple-08-wedding-s4-garden-02"
+      ],
+      "pair": [
+        "couple-08-wedding-s2-seaside-02",
+        "couple-08-wedding-s2-seaside-01",
+        "couple-08-wedding-s2-seaside-05",
+        "couple-08-wedding-s2-seaside-03"
+      ],
+      "thanks": [
+        "couple-08-wedding-s3-interior-01",
+        "couple-08-wedding-s3-interior-02"
+      ],
+      "caption": [
+        "couple-08-wedding-s3-interior-05",
+        "couple-08-wedding-s3-interior-04"
+      ],
+      "heart": "couple-08-wedding-s8-night-01",
+      "xi": [
+        "couple-08-wedding-s5-chapel-03",
+        "couple-08-wedding-s5-chapel-02"
+      ],
+      "about": [
+        "couple-08-wedding-s6-street-01",
+        "couple-08-wedding-s6-street-04"
+      ],
+      "triptych": [
+        "couple-08-wedding-s7-highland-02",
+        "couple-08-wedding-s7-highland-04",
+        "couple-08-wedding-s5-chapel-01",
+        "couple-08-wedding-s8-night-02",
+        "couple-08-wedding-s8-night-04",
+        "couple-08-wedding-s6-street-02"
+      ],
+      "collage": [
+        "couple-09-chinese-c1-courtyard-01",
+        "couple-09-chinese-c1-courtyard-04",
+        "couple-09-chinese-c1-courtyard-02"
+      ],
+      "romance": "couple-09-chinese-c2-redwall-03",
+      "ending": "couple-09-chinese-c3-chamber-03"
+    },
+    "copy": {
+      "cover_title": "我们的｜婚礼",
+      "cover_en": "WELCOME TO OUR WEDDING",
+      "invite_head": "WEDDING INVITATION",
+      "invite_ask": "Would you marry me?",
+      "invite_yes": "Yes, I do.",
+      "poem": "遇见你的那天｜风也变得很温柔｜往后的每一个清晨与黄昏｜都想和你一起慢慢走｜｜愿余生岁岁年年｜都有你在身旁",
+      "poem_en": "Of all the roads I could have taken,｜every one led me to you,｜and I would walk them all again.",
+      "trio_kicker": "I LOVE YOU｜FOR YOU",
+      "trio_quote": "喜欢你的笑｜也喜欢笑着的我们",
+      "pair_quote_a": "“在人海里，偏偏遇见你”",
+      "pair_quote_b": "“爱是日常，也是一生”",
+      "pair_tag": "FOREVER IN LOVE",
+      "thanks": "谢谢时光｜让我们刚好遇见｜｜从那天起｜每一天都是好日子",
+      "caption": "从此我们相识、相知、相爱，再也不分开",
+      "heart_lines": "我们决定牵起彼此的手｜把平凡的日子过成诗｜一起去看更远的风景",
+      "heart_en": "Two hearts, one home,｜one story still being written.",
+      "xi_lines": "日子平平淡淡，有你就很好｜一粥一饭，一朝一夕｜都是我们的小幸福",
+      "about_kicker": "· About Love ·",
+      "about_title": "WE GOT MARRIED",
+      "collage_kicker": "LOVE｜PURE LOVE",
+      "collage_lines": "红妆十里，良辰已至｜愿我们岁岁年年，喜乐平安｜把每一个平凡的日子都过成节日",
+      "romance_title": "永远的｜浪漫｜主义者",
+      "romance_lines": "把这份浪漫写进日子里｜把这份心动留给每一天｜也分享给今天的你们",
+      "vow": "我们会坚守｜今天许下的诺言｜未来的路一起走｜风雨同舟，甘苦与共｜相伴一生",
+      "thank_you": "THANK YOU"
+    },
+    "music": {
+      "src": "music/mixkit-when-in-love.mp3",
+      "volume": 0.9,
+      "trimBeforeSec": 0,
+      "fadeInSec": 0.3,
+      "fadeOutSec": 3
+    },
+    "fps": 30,
+    "format": "16:9",
+    "pace": 1
+  }
+}

@@ -462,5 +462,212 @@
     "sourceFingerprintFile": "template-source-2026-10-21-starter.json",
     "validationFile": "preview-validation-2026-10-21.json",
     "evidence": "Rendered at 1080p from the current template code on 2026-10-21; before/after source capture matched. Public 1280x720-class H.264 high-profile CRF 24 encode (AAC 160k, faststart) with 0.12 s audio fade-in, 0.6 s audio/video fade-out and a -2 dBFS sample-peak limiter against AAC overshoot. Source and public files passed format, audio, still-hold (3 s), beat-sync and full-stream decode checks; the public 720px short side has the expected resolution warning. Frames were sampled at every integer second and excerpt boundaries and reviewed as tiled sheets. PCM16 measurements are technical audio checks, not subjective listening or true-peak measurement. See validationFile for exact review scope."
+  },
+  {
+    "template": "editorial",
+    "format": "16:9",
+    "video": "editorial.mp4",
+    "poster": "editorial.jpg",
+    "sourceRangeSeconds": [
+      0,
+      85.333
+    ],
+    "sourceFramesInclusive": [
+      0,
+      2559
+    ],
+    "compositionId": "VVV-Editorial",
+    "fullCompositionSeconds": 85.333,
+    "fixture": "kits/remotion/examples/editorial-wedding.json",
+    "entryPoint": "kits/remotion/examples/cases.tsx",
+    "posterOffsetSeconds": 3.5,
+    "width": 960,
+    "height": 540,
+    "fps": 30,
+    "audio": "When in Love (Mixkit Stock Music Free License), used in the video; the audio file is not redistributed",
+    "content": "fictional generated demo photographs, Codex-generated line art and pen lettering",
+    "mediaTerms": "Photos and artwork MIT; music Mixkit Stock Music Free License; see MEDIA_LICENSE.md",
+    "evidence": "Full composition rendered on 2026-10-29 at half scale (960x540) from the current template code with Remotion CRF 24 and AAC 128k, then re-encoded to H.264 high profile CRF 28 (preset slow, faststart) with the audio stream copied. vvv check passed audio, still-hold (3 s) and beat sync against the track's beat map; the 540px short side gives the expected resolution warning. Frames sampled every 4 s were reviewed as tiled sheets. See validationFile for exact scope.",
+    "decode": "passed",
+    "sourceFingerprintFile": "template-source-2026-10-29-editorial.json",
+    "validationFile": "preview-validation-2026-10-29.json",
+    "sha256": "94b48fa0753680753c839eeaeb180119077a46467da712b3553493fe1f14a201",
+    "posterSha256": "8cf53b5434bae0307ba5c751446e549ef0670d2c9cfcaa97c65a5917cba19c87",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "profile": "100",
+          "codec_type": "video",
+          "width": 960,
+          "height": 540,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1",
+          "duration": "85.333333",
+          "bit_rate": "455928"
+        },
+        {
+          "codec_name": "aac",
+          "profile": "1",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "r_frame_rate": "0/0",
+          "duration": "85.333000",
+          "bit_rate": "125413"
+        }
+      ],
+      "format": {
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "duration": "85.333333",
+        "size": "6285966",
+        "bit_rate": "589309"
+      }
+    },
+    "sourceVideoSha256": "a8f45dc9802cea71276ac252cf143a46de54419cfb8e004075a68ae7eb66562e",
+    "highlightSeconds": [
+      4.2,
+      26.0
+    ]
+  },
+  {
+    "template": "cinema",
+    "format": "16:9",
+    "video": "cinema.mp4",
+    "poster": "cinema.jpg",
+    "sourceRangeSeconds": [
+      0,
+      115.84
+    ],
+    "sourceFramesInclusive": [
+      0,
+      3474
+    ],
+    "compositionId": "VVV-Cinema",
+    "fullCompositionSeconds": 115.833,
+    "fixture": "kits/remotion/examples/cinema-wedding.json",
+    "entryPoint": "kits/remotion/examples/cases.tsx",
+    "posterOffsetSeconds": 5.5,
+    "width": 960,
+    "height": 540,
+    "fps": 30,
+    "audio": "Possible Dreams (Mixkit Stock Music Free License), used in the video; the audio file is not redistributed",
+    "content": "fictional generated demo photographs, a Codex-generated dusk sky and line drawing",
+    "mediaTerms": "Photos and artwork MIT; music Mixkit Stock Music Free License; see MEDIA_LICENSE.md",
+    "evidence": "Full composition rendered on 2026-10-30 at half scale (960x540) from the current template code with Remotion CRF 24 and AAC 128k, then re-encoded to H.264 high profile CRF 28 (preset slow, faststart) with the audio stream copied. vvv check passed audio, still-hold (3 s) and beat sync against the track's beat map; the 540px short side gives the expected resolution warning. Frames sampled every 4 s were reviewed as tiled sheets. See validationFile for exact scope.",
+    "decode": "passed",
+    "sourceFingerprintFile": "template-source-2026-10-30-cinema.json",
+    "validationFile": "preview-validation-2026-10-30.json",
+    "sha256": "80f64bbaeb03942bc2e360c3470e4d32e20fce342f9853a0b476e0a9d69d4d2f",
+    "posterSha256": "e8b5926839a00acfc0fdaa2efcefcfd184df042bc0afeb95a5f89d114eedf672",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "profile": "100",
+          "codec_type": "video",
+          "width": 960,
+          "height": 540,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1",
+          "duration": "115.833333",
+          "bit_rate": "224153"
+        },
+        {
+          "codec_name": "aac",
+          "profile": "1",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "r_frame_rate": "0/0",
+          "duration": "115.840000",
+          "bit_rate": "125392"
+        }
+      ],
+      "format": {
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "duration": "115.840000",
+        "size": "5188860",
+        "bit_rate": "358346"
+      }
+    },
+    "sourceVideoSha256": "141997ab36ca1dab4a904714c9312961afbed6f50b1307d0fadf02a781ce81e9",
+    "highlightSeconds": [
+      28.0,
+      52.0
+    ]
+  },
+  {
+    "template": "memoir",
+    "format": "16:9",
+    "video": "memoir.mp4",
+    "poster": "memoir.jpg",
+    "sourceRangeSeconds": [
+      0,
+      154.837
+    ],
+    "sourceFramesInclusive": [
+      0,
+      4644
+    ],
+    "compositionId": "VVV-Memoir",
+    "fullCompositionSeconds": 154.833,
+    "fixture": "kits/remotion/examples/memoir-wedding.json",
+    "entryPoint": "kits/remotion/examples/cases.tsx",
+    "posterOffsetSeconds": 26.0,
+    "width": 960,
+    "height": 540,
+    "fps": 30,
+    "audio": "First Kiss (Mixkit Stock Music Free License), used in the video; the audio file is not redistributed",
+    "content": "fictional generated demo photographs and cut-outs, a Codex-generated film frame and doodle arrow",
+    "mediaTerms": "Photos and artwork MIT; music Mixkit Stock Music Free License; see MEDIA_LICENSE.md",
+    "evidence": "Full composition rendered on 2026-10-30 at half scale (960x540) from the current template code with Remotion CRF 24 and AAC 128k, then re-encoded to H.264 high profile CRF 28 (preset slow, faststart) with the audio stream copied. vvv check passed audio, still-hold (3 s) and beat sync against the track's beat map; the 540px short side gives the expected resolution warning. Frames sampled every 4 s were reviewed as tiled sheets. See validationFile for exact scope.",
+    "decode": "passed",
+    "sourceFingerprintFile": "template-source-2026-10-30-memoir.json",
+    "validationFile": "preview-validation-2026-10-30.json",
+    "sha256": "98a15841cad89ca975ff9c7bdccdc0b9afdbe71e8c9d99d7058ef8682c0d7f93",
+    "posterSha256": "f01f1831253dd0b7139b1fd1714738633351ab17c2d7c48f1d57a35df066686d",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "profile": "100",
+          "codec_type": "video",
+          "width": 960,
+          "height": 540,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1",
+          "duration": "154.833333",
+          "bit_rate": "220472"
+        },
+        {
+          "codec_name": "aac",
+          "profile": "1",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "r_frame_rate": "0/0",
+          "duration": "154.837000",
+          "bit_rate": "125375"
+        }
+      ],
+      "format": {
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "duration": "154.837000",
+        "size": "6859458",
+        "bit_rate": "354409"
+      }
+    },
+    "sourceVideoSha256": "4777fd9d057800d27a83da1de8b09f2e857844a68d772088c5c3ae39c5d85d92",
+    "highlightSeconds": [
+      13.6,
+      40.0
+    ]
   }
 ]

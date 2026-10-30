@@ -75,6 +75,17 @@
           "method": "\"VIBEVISION.VIDEO\" set above the footer in Inter 500 (kit font, OFL), 15 px caps, 0.24 em tracking, #DFFF00."
         }
       ]
+    },
+    {
+      "file": "../art/workflow.jpg",
+      "created": "2026-10-29",
+      "use_case": "illustration",
+      "tool": "Codex image generation through the c2c bridge",
+      "note": "README workflow banner: order to delivery for a wedding studio (cloud drive, sorted photos, beat timeline, film, delivery). hero-en.png and art/recreate.jpg were passed as style references; no text, people or logo in the image.",
+      "references": [
+        "hero-en.png",
+        "../art/recreate.jpg"
+      ]
     }
   ]
 }

@@ -122,5 +122,12 @@
       "VVV"
     ],
     "license": "MIT"
+  },
+  "shows": {
+    "couple": {
+      "groom": "opening and ending",
+      "bride": "opening and ending",
+      "date": "opening"
+    }
   }
 }

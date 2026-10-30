@@ -211,9 +211,28 @@ def main(argv=None):
     init.add_argument('--output', required=True, type=Path)
     init.add_argument('--allow-repeat', action='store_true')
     init.add_argument('--style', help='A saved style preset (name or path) to apply to the new project.')
+    init.add_argument('--max-size', dest='max_size', type=int, help='Long side of the project copies in px (default 2560; 0 keeps originals).')
+    init.add_argument('--faces', action='store_true', help='Detect faces for cropping (needs OpenCV; never installed for you).')
     arrange = commands.add_parser('arrange', help='Place the photos along the template\'s emotional arc from creative/photo-tags.json.')
     arrange.add_argument('--project', required=True, type=Path)
     arrange.add_argument('--allow-repeat', action='store_true')
+    update = commands.add_parser('update', help='Bring a project\'s template code up to date with the kit; edited files are conflicts.')
+    update.add_argument('--project', required=True, type=Path)
+    update.add_argument('--kit', type=Path, help='The kit directory; defaults to $VVV_KIT or the bundled kits/remotion.')
+    update.add_argument('--apply', action='store_true', help='Write the updates (default: report only).')
+    update.add_argument('--take-kit', dest='take_kit', action='store_true', help='Also overwrite files edited in the project.')
+    music = commands.add_parser('music', help='Add the user\'s track to a project, and fit a song to the template.')
+    musics = music.add_subparsers(dest='music_command', required=True)
+    music_add = musics.add_parser('add', help='Copy a local audio file in, measure its beats, record it and use it.')
+    music_add.add_argument('--project', required=True, type=Path)
+    music_add.add_argument('--file', required=True, type=Path)
+    music_add.add_argument('--name', help='File name in public/music (default: from the file).')
+    music_add.add_argument('--keep-inputs', action='store_true', help='Record the track without switching inputs.json to it.')
+    music_fit = musics.add_parser('fit', help='Choose where the song starts and the pace so the chorus opens the climax page.')
+    music_fit.add_argument('--project', required=True, type=Path)
+    music_fit.add_argument('--climax', help='Page that should open on the chorus (default: the template\'s climax page).')
+    music_fit.add_argument('--seconds', type=positive, help='Target film length; default: the shortest holds of about 5 s.')
+    music_fit.add_argument('--apply', action='store_true', help='Write trimBeforeSec and the pace to inputs.json.')
     style = commands.add_parser('style', help='Save, list and apply style presets that carry settled choices across films.')
     styles = style.add_subparsers(dest='style_command', required=True)
     styles.add_parser('list', help='Saved presets.')
@@ -301,7 +320,7 @@ def main(argv=None):
             import vvv_style
             preset = vvv_style.resolve(args.style) if args.style else None  # fail before creating anything
             result = create_project(args.kit, args.template, args.photos, args.output, args.allow_repeat,
-                                    args.frame_format, args.example)
+                                    args.frame_format, args.example, args.max_size, args.faces)
             if preset:
                 try:
                     result['style'] = vvv_style.apply(result['project'], preset)
@@ -311,6 +330,17 @@ def main(argv=None):
         elif args.command == 'arrange':
             from vvv_arc import arrange as arrange_photos
             result = arrange_photos(args.project, args.allow_repeat)
+        elif args.command == 'update':
+            from vvv_project import update_project
+            if args.kit is None:
+                raise ValueError('KIT_REQUIRED: ' + KIT_HINT)
+            result = update_project(args.project, args.kit, args.apply, args.take_kit)
+        elif args.command == 'music':
+            import vvv_music
+            if args.music_command == 'add':
+                result = vvv_music.add(args.project, args.file, args.name, not args.keep_inputs)
+            else:
+                result = vvv_music.fit(args.project, args.climax, args.seconds, args.apply)
         elif args.command == 'style':
             import vvv_style
             if args.style_command == 'list':
@@ -388,6 +418,9 @@ def main(argv=None):
                 raise ValueError('NODE_MISSING: Install Node.js to render this project.')
             if not (project / 'node_modules' / '@remotion' / 'renderer').is_dir():
                 raise ValueError('DEPENDENCIES_MISSING: Run npm ci inside the project first.')
+            # Reuse a Chrome Headless Shell this computer already has instead of downloading it per project.
+            from vvv_doctor import cache_chrome, provide_chrome
+            provide_chrome(project, default_kit())
             command = [node, str(project / 'scripts' / 'render.mjs'), '--project', str(project),
                        '--mode', args.command, '--scale', str(args.scale)]
             if args.command == 'sample':
@@ -395,7 +428,10 @@ def main(argv=None):
                     command += ['--from', str(args.start)]
                 if args.end is not None:
                     command += ['--to', str(args.end)]
-            return subprocess.run(command, cwd=project, check=False).returncode
+            code = subprocess.run(command, cwd=project, check=False).returncode
+            if code == 0:
+                cache_chrome(project)
+            return code
         emit(with_next(summarize(args.command, result), args))
         return 1 if result.get('status') == 'failed' else 0
     except ModuleNotFoundError as error:

@@ -100,8 +100,16 @@ def beat_sync(peaks, beats, offset, top=30):
     if not strongest or not times:
         return None
     distances = [min(abs(p['t'] - b) for b in times) for p in strongest]
+    # The peaks furthest from a beat, signed (negative: before the beat), so a fix can target them.
+    worst = []
+    for peak in strongest:
+        beat = min(range(len(times)), key=lambda i: abs(peak['t'] - times[i]))
+        worst.append({'t': round(peak['t'], 2), 'beat': beat, 'beatAt': round(times[beat], 2),
+                      'offsetMs': round(1000 * (peak['t'] - times[beat])), 'strength': round(peak['s'], 1)})
+    worst = sorted(worst, key=lambda w: -abs(w['offsetMs']))[:8]
     return {'peaks': len(strongest), 'meanMs': round(1000 * sum(distances) / len(distances)),
-            'within66ms': round(sum(d <= 0.066 for d in distances) / len(distances), 2)}
+            'within66ms': round(sum(d <= 0.066 for d in distances) / len(distances), 2),
+            'worst': [w for w in worst if abs(w['offsetMs']) > 66]}
 
 
 def audio_levels(ffmpeg, video, folder):

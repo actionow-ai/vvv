@@ -1,0 +1,367 @@
+{
+  "id": "memoir",
+  "version": "1.0.0",
+  "compositionId": "VVV-Memoir",
+  "title": "Memoir · 手写胶片故事 · 婚礼开场",
+  "description": "黑底手写体讲两个人的一生：打字“欢迎来到我们的婚礼” → 胶片框照片配两句话 → 新人贴纸与彩纸 → 家乡地标和童年照贴纸 → 滚动的 35mm 胶片童年 → 聊天截图 → 四个章节 → 取景框里的领证照 → “爱是什么”四页 → 一封长信与致谢，约 2 分 35 秒，每页卡在 First Kiss 的小节上。",
+  "formats": {
+    "16:9": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "defaultFormat": "16:9",
+  "music": {
+    "required": true
+  },
+  "check": {
+    "maxStillSeconds": 3
+  },
+  "defaultProps": {
+    "couple": {
+      "groom": "陆知行",
+      "bride": "苏念",
+      "groomEn": "LU ZHIXING",
+      "brideEn": "SU NIAN",
+      "date": "2026-09-19",
+      "tagline": "我们结婚啦"
+    },
+    "photos": {
+      "intro": [],
+      "couple": "",
+      "homeGroom": "",
+      "homeBride": "",
+      "kidGroom": "",
+      "kidBride": "",
+      "childhood": [],
+      "chats": [],
+      "ch1": [],
+      "ch2": [],
+      "ch3": [],
+      "ch4": [],
+      "license": "",
+      "love1": [],
+      "love2": [],
+      "love3": [],
+      "love4": []
+    },
+    "copy": {
+      "welcome": "欢迎来到我们的婚礼",
+      "intro_1": "“人海里，刚好遇见你”",
+      "intro_2": "“多幸运，我们成了我们”",
+      "thanks": "谢谢你们今天能来｜陪我们走进这一天",
+      "born_title": "1996年，我们来到这个世界",
+      "home_groom": "北方小城",
+      "home_bride": "南方小镇",
+      "strip_1": "后来我们才知道",
+      "strip_2": "我们都被好好爱着长大",
+      "jump": "直到 {since}",
+      "chat_lines": "朋友的一句介绍｜让我们加上了微信｜从早安聊到晚安",
+      "into": "两个人的故事，从这里开始",
+      "chapter_1": "在银杏街，第一次并肩走",
+      "chapter_2": "一起过的每一个生日",
+      "chapter_3": "有了属于我们的小家",
+      "chapter_4": "走过分开的站台，等来那句我愿意",
+      "license": "2026.5.20｜这一年，我们领证啦",
+      "love_title": "爱是什么",
+      "love_1": "是一起找遍｜街角的每一家小馆",
+      "love_sub_1": "是把最后一口留给你",
+      "love_2": "是你记得｜我随口说过的话",
+      "love_sub_2": "是每一次都被放在心上",
+      "love_3": "是一起把日子｜过成喜欢的样子",
+      "love_sub_3": "是吵吵闹闹，也从不松开的手",
+      "love_4": "是往后余生｜都是你",
+      "love_sub_4": "是今天，也是以后的每一天",
+      "letter": "今天，我们在大家的见证下举行婚礼｜往后的日子，我们会好好相爱｜一起去更远的地方，看更多的风景｜把平凡的日子过得热气腾腾｜谢谢爸爸妈妈，谢谢每一位朋友｜因为你们，我们更懂得什么是爱",
+      "ending": "愿今天的每一位｜都被温柔以待"
+    },
+    "music": {
+      "src": "music/mixkit-first-kiss.mp3",
+      "volume": 0.9,
+      "trimBeforeSec": 0,
+      "fadeInSec": 0.3,
+      "fadeOutSec": 3
+    },
+    "fps": 30,
+    "pace": 1,
+    "since": "2021-04-17"
+  },
+  "slots": {
+    "intro": {
+      "kind": "array",
+      "count": 4,
+      "min": 4,
+      "hint": "4 张横版合照，套在胶片框里满屏，前两张、后两张各配一句话"
+    },
+    "couple": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "新人全身合照，最好是抠好背景的 PNG（贴纸效果）；普通照片会显示成白边卡片"
+    },
+    "homeGroom": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "新郎家乡的地标或美食，抠图 PNG 效果最好"
+    },
+    "homeBride": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "新娘家乡的地标或美食，抠图 PNG 效果最好"
+    },
+    "kidGroom": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "新郎小时候的照片，抠图 PNG 效果最好"
+    },
+    "kidBride": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "新娘小时候的照片，抠图 PNG 效果最好"
+    },
+    "childhood": {
+      "kind": "array",
+      "count": 8,
+      "min": 8,
+      "hint": "8 张童年、家人照片，横图，排在滚动的 35mm 胶片上"
+    },
+    "chats": {
+      "kind": "array",
+      "count": 3,
+      "min": 3,
+      "hint": "3 张聊天截图（或竖图），叠在左侧"
+    },
+    "ch1": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "章节一的 2 张横图"
+    },
+    "ch2": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "章节二的 2 张横图"
+    },
+    "ch3": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "章节三的 2 张横图"
+    },
+    "ch4": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "章节四的 2 张横图"
+    },
+    "license": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "领证或婚礼的一张横图，放在相机取景框里"
+    },
+    "love1": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "“爱是什么”第一页的 2 张照片（左侧竖框，先后两张）"
+    },
+    "love2": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "第二页的 2 张"
+    },
+    "love3": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "第三页的 2 张"
+    },
+    "love4": {
+      "kind": "array",
+      "count": 2,
+      "min": 2,
+      "hint": "第四页的 2 张"
+    }
+  },
+  "arc": [
+    {
+      "id": "opening",
+      "mood": [
+        "romantic",
+        "joyful"
+      ],
+      "slots": [
+        "intro",
+        {
+          "slot": "couple",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "childhood",
+      "mood": [
+        "nostalgic",
+        "sweet"
+      ],
+      "slots": [
+        "homeGroom",
+        "homeBride",
+        "kidGroom",
+        "kidBride",
+        "childhood"
+      ]
+    },
+    {
+      "id": "together",
+      "mood": [
+        "sweet",
+        "joyful"
+      ],
+      "slots": [
+        "chats",
+        "ch1",
+        "ch2",
+        "ch3",
+        "ch4",
+        {
+          "slot": "license",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "love",
+      "mood": [
+        "romantic",
+        "moving"
+      ],
+      "slots": [
+        "love1",
+        "love2",
+        "love3",
+        "love4"
+      ]
+    }
+  ],
+  "sample": {
+    "from": 0,
+    "to": 20
+  },
+  "package": {
+    "name": "@vvv/memoir",
+    "fixture": "examples/memoir-wedding.json",
+    "authors": [
+      "VVV"
+    ],
+    "license": "MIT"
+  },
+  "shows": {
+    "couple": {
+      "groom": "birth page (handwritten name by the child sticker) and the ending",
+      "bride": "birth page (handwritten name by the child sticker) and the ending",
+      "date": "ending, after the names"
+    }
+  },
+  "timeline": {
+    "pages": [
+      {
+        "id": "welcome",
+        "beats": 8
+      },
+      {
+        "id": "intro",
+        "beats": 16
+      },
+      {
+        "id": "thanks",
+        "beats": 12
+      },
+      {
+        "id": "born",
+        "beats": 16
+      },
+      {
+        "id": "strip",
+        "beats": 32
+      },
+      {
+        "id": "jump",
+        "beats": 8
+      },
+      {
+        "id": "chats",
+        "beats": 16
+      },
+      {
+        "id": "into",
+        "beats": 8
+      },
+      {
+        "id": "ch1",
+        "beats": 12
+      },
+      {
+        "id": "ch2",
+        "beats": 12
+      },
+      {
+        "id": "ch3",
+        "beats": 12
+      },
+      {
+        "id": "ch4",
+        "beats": 12
+      },
+      {
+        "id": "license",
+        "beats": 16
+      },
+      {
+        "id": "lovetitle",
+        "beats": 8
+      },
+      {
+        "id": "love1",
+        "beats": 12
+      },
+      {
+        "id": "love2",
+        "beats": 12
+      },
+      {
+        "id": "love3",
+        "beats": 12
+      },
+      {
+        "id": "love4",
+        "beats": 12
+      },
+      {
+        "id": "letter",
+        "beats": 32
+      },
+      {
+        "id": "ending",
+        "beats": 12
+      }
+    ],
+    "climax": "license",
+    "pace": {
+      "prop": "pace",
+      "min": 1,
+      "max": 2
+    }
+  }
+}

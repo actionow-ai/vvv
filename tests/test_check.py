@@ -51,7 +51,13 @@ class MeasurementTests(unittest.TestCase):
         on_beat = beat_sync(peaks, [11.0, 12.0, 13.0], offset=10.0)
         self.assertEqual(on_beat['meanMs'], 25)
         self.assertEqual(on_beat['within66ms'], 1.0)
+        self.assertEqual(on_beat['worst'], [])
         self.assertIsNone(beat_sync([], [1.0], 0))
+
+    def test_beat_sync_lists_the_worst_peaks_signed(self):
+        peaks = [{'t': 1.0, 's': 10}, {'t': 1.78, 's': 9}, {'t': 3.2, 's': 8}]
+        result = beat_sync(peaks, [1.0, 2.0, 3.0], offset=0)
+        self.assertEqual([(w['t'], w['beat'], w['offsetMs']) for w in result['worst']], [(1.78, 1, -220), (3.2, 2, 200)])
 
 
 def write_project(project, catalog, props):

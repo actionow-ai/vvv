@@ -20,7 +20,7 @@ The portable skill has been copied into isolated Claude Code, Codex and WorkBudd
 
 ## Preview review
 
-Every published preview is the complete film. Album (16:9 and 9:16), Comedy, Doodle and DV Story were rendered in full on 2026-10-23 at half scale (960 × 540, or 540 × 960 for 9:16) to keep the repository small, which gives an expected resolution warning against the 1080p target; Starter's 35-second reel from 2026-10-21 is already complete at 1280 × 720. The [validation record](assets/preview-validation-2026-10-23.json) holds the render and encode commands, `vvv check` results and source fingerprints; [previews.json](assets/previews.json) holds hashes, stream metadata and the highlight window the website's showreel plays.
+Every published preview is the complete film. Album (16:9 and 9:16), Comedy, Doodle and DV Story were rendered in full on 2026-10-23 at half scale (960 × 540, or 540 × 960 for 9:16) to keep the repository small, which gives an expected resolution warning against the 1080p target; Starter's 35-second reel from 2026-10-21 is already complete at 1280 × 720, and Editorial was rendered the same way on 2026-10-29 ([its record](assets/preview-validation-2026-10-29.json)). The [validation record](assets/preview-validation-2026-10-23.json) holds the render and encode commands, `vvv check` results and source fingerprints; [previews.json](assets/previews.json) holds hashes, stream metadata and the highlight window the website's showreel plays.
 
 | Preview | Length | Beat sync (mean) | Notes |
 |---|---:|---:|---|
@@ -30,6 +30,9 @@ Every published preview is the complete film. Album (16:9 and 9:16), Comedy, Doo
 | DV Story | 3:03 | 43 ms | Mean audio level is lower than the others (-28 dBFS) |
 | Comedy | 3:32 | 14 ms | Measured against both tracks; the soundtrack switches at 110.8 s |
 | Starter | 0:35 | passed | 2026-10-21 render, 1280 × 720 |
+| Editorial | 1:25 | 47 ms | 2026-10-29 render; still share under 1%, worst peaks listed in its record |
+| Cinema | 1:56 | 53 ms | 2026-10-30 render; still share 16%, worst peaks listed in its record |
+| Memoir | 2:35 | 38 ms | 2026-10-30 render; still share 8%, worst peaks listed in its record |
 
 All previews pass the audio and 3-second still checks. Frames sampled every 4 s were reviewed as tiled sheets for completeness, framing and readable captions. The Doodle avatar-to-photo handover, which used to leave near-empty paper for about 0.9 s around 20–21 s, was fixed on 2026-10-23 and reviewed at 5 frames per second.
 

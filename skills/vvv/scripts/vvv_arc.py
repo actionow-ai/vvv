@@ -124,7 +124,7 @@ def arrange(project, allow_repeat=False):
         mood = min(ranks) if ranks else (len(moods) if not tag.get('mood') else len(moods) + 1)
         return subject, crop, mood, order[photo]
 
-    def choose(count, moods, subjects, one_set, avoid, reuse, exclude=()):
+    def choose(count, moods, subjects, one_set, avoid, reuse, exclude=(), other_than=None):
         """Best `count` photos not in `avoid`; with `reuse`, avoided photos may follow, matching ones first."""
         if count <= 0:
             return []
@@ -145,6 +145,9 @@ def arrange(project, allow_repeat=False):
                 if tags.get(photo, {}).get('set'):
                     groups.setdefault(tags[photo]['set'], []).append(photo)
             full = [g for g in groups.values() if len(g) >= count]
+            # A second group on the same page shows another outfit when there is one to show.
+            if other_than and any(tags[g[0]]['set'] != other_than for g in full):
+                full = [g for g in full if tags[g[0]]['set'] != other_than]
             if full:
                 best = min(full, key=lambda g: [score(p, moods, subjects) for p in g[:count]])
                 return best[:count]
@@ -159,8 +162,18 @@ def arrange(project, allow_repeat=False):
         current['shape'] = shape(slots[name].get('hint'))
         one_set = bool(SET_HINT.search(slots[name].get('hint', '')))
         chosen = list(pins.get(name, []))
-        chosen += choose(count - len(chosen), moods, subjects, one_set, taken | set(chosen),
-                         independent or allow_repeat, exclude=set(chosen))
+        groups = slots[name].get('groups')
+        if groups and not chosen and sum(groups) == count:
+            # One outfit per group (a pair, a row of columns); consecutive groups change outfit when they can.
+            previous = None
+            for size in groups:
+                part = choose(size, moods, subjects, True, taken | set(chosen), independent or allow_repeat,
+                              exclude=set(chosen), other_than=previous)
+                previous = tags.get(part[0], {}).get('set') if part else None
+                chosen += part
+        else:
+            chosen += choose(count - len(chosen), moods, subjects, one_set, taken | set(chosen),
+                             independent or allow_repeat, exclude=set(chosen))
         if independent:
             # A gallery shows sets (outfits) together, in the order the user's photos first show them.
             first = {}

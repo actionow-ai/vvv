@@ -1,0 +1,78 @@
+{
+  "template": "cinema",
+  "props": {
+    "couple": {
+      "groom": "陆知行",
+      "bride": "苏念",
+      "groomEn": "LU ZHIXING",
+      "brideEn": "SU NIAN",
+      "date": "2026-09-19",
+      "tagline": "我们结婚啦"
+    },
+    "photos": {
+      "kidGroom": "groom-01-childhood-03",
+      "kidBride": "bride-01-childhood-02",
+      "childhood": [
+        "groom-01-childhood-01",
+        "groom-02-school-01",
+        "bride-02-school-01",
+        "bride-01-childhood-01"
+      ],
+      "first": "couple-03-dating-02",
+      "dating": [
+        "couple-03-dating-01",
+        "couple-03-dating-03",
+        "couple-03-dating-04",
+        "couple-04-daily-01",
+        "couple-04-daily-02",
+        "couple-06-travel-01"
+      ],
+      "dating2": [
+        "couple-05-distance-01",
+        "couple-07-proposal-01",
+        "couple-07-proposal-02"
+      ],
+      "wedding": "couple-08-wedding-s1-studio-04",
+      "pairs": [
+        "couple-08-wedding-s2-seaside-02",
+        "couple-08-wedding-s2-seaside-04",
+        "couple-08-wedding-s3-interior-01",
+        "couple-08-wedding-s3-interior-03"
+      ],
+      "trio": [
+        "couple-08-wedding-s4-garden-01",
+        "couple-08-wedding-s5-chapel-01",
+        "couple-08-wedding-s6-street-01"
+      ],
+      "closing": "couple-08-wedding-s8-night-01"
+    },
+    "copy": {
+      "welcome_1": "欢迎来到我们的婚礼",
+      "welcome_2": "这是属于我们的故事",
+      "groom_label": "新郎",
+      "bride_label": "新娘",
+      "born_prefix": "出生于",
+      "grow_title": "在慢慢长大的路上",
+      "grow_lines": "我们各自走过｜属于自己的童年",
+      "met_line": "那一天，两个人的故事有了交集",
+      "counter_head": "我们已经一起走过",
+      "counter_unit": "天",
+      "hearts": "两颗心｜慢慢靠近",
+      "today": "今天，我们决定一起走下去",
+      "quote": "人海里有那么多人｜我只想和你慢慢变老",
+      "thanks": "谢谢你们前来｜见证我们的新篇章"
+    },
+    "music": {
+      "src": "music/mixkit-possible-dreams.mp3",
+      "volume": 0.9,
+      "trimBeforeSec": 0,
+      "fadeInSec": 0.3,
+      "fadeOutSec": 3
+    },
+    "fps": 30,
+    "pace": 1,
+    "since": "2021-09-12",
+    "groomBorn": "1996-03-08",
+    "brideBorn": "1997-11-21"
+  }
+}

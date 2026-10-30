@@ -1,0 +1,425 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "couple": {
+      "type": "object",
+      "properties": {
+        "groom": {
+          "type": "string",
+          "description": "新郎姓名"
+        },
+        "bride": {
+          "type": "string",
+          "description": "新娘姓名"
+        },
+        "groomEn": {
+          "type": "string",
+          "description": "新郎英文名或拼音"
+        },
+        "brideEn": {
+          "type": "string",
+          "description": "新娘英文名或拼音"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "婚礼日期"
+        },
+        "tagline": {
+          "type": "string",
+          "description": "主标题"
+        }
+      },
+      "required": [
+        "groom",
+        "bride",
+        "groomEn",
+        "brideEn",
+        "date",
+        "tagline"
+      ]
+    },
+    "photos": {
+      "type": "object",
+      "properties": {
+        "intro": {
+          "minItems": 4,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "couple": {
+          "type": "string",
+          "minLength": 1
+        },
+        "homeGroom": {
+          "type": "string",
+          "minLength": 1
+        },
+        "homeBride": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kidGroom": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kidBride": {
+          "type": "string",
+          "minLength": 1
+        },
+        "childhood": {
+          "minItems": 8,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "chats": {
+          "minItems": 3,
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ch1": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ch2": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ch3": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ch4": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "love1": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "love2": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "love3": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "love4": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "intro",
+        "couple",
+        "homeGroom",
+        "homeBride",
+        "kidGroom",
+        "kidBride",
+        "childhood",
+        "chats",
+        "ch1",
+        "ch2",
+        "ch3",
+        "ch4",
+        "license",
+        "love1",
+        "love2",
+        "love3",
+        "love4"
+      ]
+    },
+    "copy": {
+      "type": "object",
+      "properties": {
+        "welcome": {
+          "type": "string",
+          "description": "开场 · 手写打字"
+        },
+        "intro_1": {
+          "type": "string",
+          "description": "胶片框照片 · 第一句（前两张照片上）"
+        },
+        "intro_2": {
+          "type": "string",
+          "description": "胶片框照片 · 第二句（后两张照片上）"
+        },
+        "thanks": {
+          "type": "string",
+          "description": "贴纸合影 · 右侧两行（用｜分隔）"
+        },
+        "born_title": {
+          "type": "string",
+          "description": "出生页 · 黄色标题"
+        },
+        "home_groom": {
+          "type": "string",
+          "description": "出生页 · 新郎家乡"
+        },
+        "home_bride": {
+          "type": "string",
+          "description": "出生页 · 新娘家乡"
+        },
+        "strip_1": {
+          "type": "string",
+          "description": "胶片条 · 前半句（可用｜分两行）"
+        },
+        "strip_2": {
+          "type": "string",
+          "description": "胶片条 · 后半句"
+        },
+        "jump": {
+          "type": "string",
+          "description": "时间跳转（{since} 是相识日期）"
+        },
+        "chat_lines": {
+          "type": "string",
+          "description": "聊天截图页 · 右侧几行（用｜分行）"
+        },
+        "into": {
+          "type": "string",
+          "description": "过渡一句"
+        },
+        "chapter_1": {
+          "type": "string",
+          "description": "章节一 · 标题"
+        },
+        "chapter_2": {
+          "type": "string",
+          "description": "章节二 · 标题"
+        },
+        "chapter_3": {
+          "type": "string",
+          "description": "章节三 · 标题"
+        },
+        "chapter_4": {
+          "type": "string",
+          "description": "章节四 · 标题"
+        },
+        "license": {
+          "type": "string",
+          "description": "领证页（用｜分行）"
+        },
+        "love_title": {
+          "type": "string",
+          "description": "“爱是什么”标题"
+        },
+        "love_1": {
+          "type": "string",
+          "description": "爱是什么 · 第一页右侧几行（用｜分行）"
+        },
+        "love_sub_1": {
+          "type": "string",
+          "description": "爱是什么 · 第一页底部小字"
+        },
+        "love_2": {
+          "type": "string",
+          "description": "爱是什么 · 第二页"
+        },
+        "love_sub_2": {
+          "type": "string",
+          "description": "爱是什么 · 第二页底部小字"
+        },
+        "love_3": {
+          "type": "string",
+          "description": "爱是什么 · 第三页"
+        },
+        "love_sub_3": {
+          "type": "string",
+          "description": "爱是什么 · 第三页底部小字"
+        },
+        "love_4": {
+          "type": "string",
+          "description": "爱是什么 · 第四页"
+        },
+        "love_sub_4": {
+          "type": "string",
+          "description": "爱是什么 · 第四页底部小字"
+        },
+        "letter": {
+          "type": "string",
+          "description": "结尾长信（用｜分行，每行一句）"
+        },
+        "ending": {
+          "type": "string",
+          "description": "致谢（用｜分行）"
+        }
+      },
+      "required": [
+        "welcome",
+        "intro_1",
+        "intro_2",
+        "thanks",
+        "born_title",
+        "home_groom",
+        "home_bride",
+        "strip_1",
+        "strip_2",
+        "jump",
+        "chat_lines",
+        "into",
+        "chapter_1",
+        "chapter_2",
+        "chapter_3",
+        "chapter_4",
+        "license",
+        "love_title",
+        "love_1",
+        "love_sub_1",
+        "love_2",
+        "love_sub_2",
+        "love_3",
+        "love_sub_3",
+        "love_4",
+        "love_sub_4",
+        "letter",
+        "ending"
+      ]
+    },
+    "music": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "public/ 下的音乐路径，如 music/xxx.mp3；留空为无声"
+        },
+        "volume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "音量"
+        },
+        "trimBeforeSec": {
+          "type": "number",
+          "minimum": 0,
+          "description": "从音乐第几秒开始"
+        },
+        "fadeInSec": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fadeOutSec": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "src",
+        "volume",
+        "trimBeforeSec",
+        "fadeInSec",
+        "fadeOutSec"
+      ]
+    },
+    "fps": {
+      "type": "integer",
+      "minimum": 24,
+      "maximum": 60,
+      "description": "帧率：预览 30，成片 60"
+    },
+    "format": {
+      "description": "画幅，例如 16:9 或 9:16（由工程初始化时选择）",
+      "type": "string",
+      "pattern": "^[1-9][0-9]*:[1-9][0-9]*$"
+    },
+    "beatGrid": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "beats": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "required": [
+            "beats"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pace": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 2,
+      "description": "节奏：每页时长的倍数。1 为默认；1.5 让每页停留更久，全片随之变长"
+    },
+    "since": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "相识日期（YYYY-MM-DD），时间跳转页显示"
+    }
+  },
+  "required": [
+    "couple",
+    "photos",
+    "copy",
+    "music",
+    "fps",
+    "pace",
+    "since"
+  ]
+}

@@ -1,6 +1,6 @@
 # Images for a VVV video
 
-Use one request and delivery contract in Claude Code, Codex and WorkBuddy. First inspect reference images and decide which missing scene elements need generation. Keep editable titles and simple shapes in code. This helper generates still assets; it does not generate video or voice, inspect links, or grant a host new tools.
+Use one request and delivery contract in Claude Code, Codex and WorkBuddy. First inspect reference images and decide which missing scene elements need generation. In a recreation, generate the reference's visual elements (lettering, ornaments, line art, textures, frames) rather than approximating them in code; keep only editable text and plain geometry in code ([recreation](recreation.md#5-rebuild)). This helper generates still assets; it does not generate video or voice, inspect links, or grant a host new tools.
 
 The helper accepts an explicitly selected, existing project directory, including custom wedding-film and photo-story projects. It does not require a template manifest. If `vvv.json` is present, it must declare `vvvFormat: "1.0"` (legacy `version: "0.1"` projects are also accepted). Image outputs and records still use project-local `public/` and `creative/`; a custom renderer must explicitly integrate the returned asset at its actual static-asset root. The helper neither converts the project nor inserts a scene layer.
 

@@ -1,0 +1,284 @@
+{
+  "id": "cinema",
+  "version": "1.0.0",
+  "compositionId": "VVV-Cinema",
+  "title": "Cinema · 黑幕影院 · 婚礼开场",
+  "description": "婚礼现场大屏用的黑底开场片：黄昏天空上打字“欢迎来到我们的婚礼” → 两张圆角童年照配姓名与生日 → 四张童年照从两侧滑入 → 一条线、相遇日期，线里展开第一张合照 → “一起走过 N 天”计数 → 恋爱照片一栏一栏铺满 → 婚纱照 → 一句话 → 线描新人与致谢，约 1 分 55 秒，每页卡在 Possible Dreams 的小节上。",
+  "formats": {
+    "16:9": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "defaultFormat": "16:9",
+  "music": {
+    "required": true
+  },
+  "check": {
+    "maxStillSeconds": 3
+  },
+  "defaultProps": {
+    "couple": {
+      "groom": "陆知行",
+      "bride": "苏念",
+      "groomEn": "LU ZHIXING",
+      "brideEn": "SU NIAN",
+      "date": "2026-09-19",
+      "tagline": "我们结婚啦"
+    },
+    "photos": {
+      "kidGroom": "",
+      "kidBride": "",
+      "childhood": [],
+      "first": "",
+      "dating": [],
+      "dating2": [],
+      "wedding": "",
+      "pairs": [],
+      "trio": [],
+      "closing": ""
+    },
+    "copy": {
+      "welcome_1": "欢迎来到我们的婚礼",
+      "welcome_2": "这是属于我们的故事",
+      "groom_label": "新郎",
+      "bride_label": "新娘",
+      "born_prefix": "出生于",
+      "grow_title": "在慢慢长大的路上",
+      "grow_lines": "我们各自走过｜属于自己的童年",
+      "met_line": "那一天，两个人的故事有了交集",
+      "counter_head": "我们已经一起走过",
+      "counter_unit": "天",
+      "hearts": "两颗心｜慢慢靠近",
+      "today": "今天，我们决定一起走下去",
+      "quote": "人海里有那么多人｜我只想和你慢慢变老",
+      "thanks": "谢谢你们前来｜见证我们的新篇章"
+    },
+    "music": {
+      "src": "music/mixkit-possible-dreams.mp3",
+      "volume": 0.9,
+      "trimBeforeSec": 0,
+      "fadeInSec": 0.3,
+      "fadeOutSec": 3
+    },
+    "fps": 30,
+    "pace": 1,
+    "since": "2021-09-12",
+    "groomBorn": "1996-03-08",
+    "brideBorn": "1997-11-21"
+  },
+  "slots": {
+    "kidGroom": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "新郎小时候的照片（圆角近方形）"
+    },
+    "kidBride": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "新娘小时候的照片（圆角近方形）"
+    },
+    "childhood": {
+      "kind": "array",
+      "count": 4,
+      "min": 4,
+      "hint": "童年到少年的 4 张照片，左两张新郎、右两张新娘（圆角方形，从两侧滑入）"
+    },
+    "first": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "相遇或最早的一张合照，横图，从一条线里展开成满屏"
+    },
+    "dating": {
+      "kind": "array",
+      "count": 6,
+      "min": 6,
+      "hint": "恋爱时的 6 张，三张一组竖条满屏，先三张后三张"
+    },
+    "dating2": {
+      "kind": "array",
+      "count": 3,
+      "min": 3,
+      "hint": "恋爱后段的 3 张（异地、求婚等），竖条满屏"
+    },
+    "wedding": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "一张横版婚纱照，满屏"
+    },
+    "pairs": {
+      "kind": "array",
+      "count": 4,
+      "min": 4,
+      "hint": "4 张竖版婚纱照，两张并排，先一对后一对"
+    },
+    "trio": {
+      "kind": "array",
+      "count": 3,
+      "min": 3,
+      "hint": "3 张竖版婚纱照，三栏"
+    },
+    "closing": {
+      "kind": "single",
+      "count": 1,
+      "min": 1,
+      "hint": "一张笑得最开心的近景，横图满屏"
+    }
+  },
+  "arc": [
+    {
+      "id": "childhood",
+      "mood": [
+        "nostalgic",
+        "sweet"
+      ],
+      "slots": [
+        "kidGroom",
+        "kidBride",
+        "childhood"
+      ]
+    },
+    {
+      "id": "meeting",
+      "mood": [
+        "sweet",
+        "joyful"
+      ],
+      "slots": [
+        {
+          "slot": "first",
+          "subject": [
+            "couple"
+          ]
+        },
+        "dating",
+        "dating2"
+      ]
+    },
+    {
+      "id": "wedding",
+      "mood": [
+        "romantic",
+        "moving"
+      ],
+      "slots": [
+        {
+          "slot": "wedding",
+          "subject": [
+            "couple"
+          ]
+        },
+        "pairs",
+        "trio"
+      ]
+    },
+    {
+      "id": "closing",
+      "mood": [
+        "joyful",
+        "moving"
+      ],
+      "slots": [
+        {
+          "slot": "closing",
+          "subject": [
+            "couple"
+          ]
+        }
+      ]
+    }
+  ],
+  "sample": {
+    "from": 0,
+    "to": 20
+  },
+  "package": {
+    "name": "@vvv/cinema",
+    "fixture": "examples/cinema-wedding.json",
+    "authors": [
+      "VVV"
+    ],
+    "license": "MIT"
+  },
+  "shows": {
+    "couple": {
+      "groom": "childhood page (新郎 + birthday) and the ending",
+      "bride": "childhood page (新娘 + birthday) and the ending",
+      "date": "ending, after the names; also the end of the day count from `since`"
+    }
+  },
+  "timeline": {
+    "pages": [
+      {
+        "id": "welcome",
+        "beats": 16
+      },
+      {
+        "id": "born",
+        "beats": 12
+      },
+      {
+        "id": "growing",
+        "beats": 12
+      },
+      {
+        "id": "met",
+        "beats": 12
+      },
+      {
+        "id": "counter",
+        "beats": 8
+      },
+      {
+        "id": "dating",
+        "beats": 16
+      },
+      {
+        "id": "hearts",
+        "beats": 8
+      },
+      {
+        "id": "dating2",
+        "beats": 8
+      },
+      {
+        "id": "today",
+        "beats": 8
+      },
+      {
+        "id": "wedding",
+        "beats": 8
+      },
+      {
+        "id": "pairs",
+        "beats": 16
+      },
+      {
+        "id": "trio",
+        "beats": 8
+      },
+      {
+        "id": "quote",
+        "beats": 12
+      },
+      {
+        "id": "closing",
+        "beats": 8
+      },
+      {
+        "id": "ending",
+        "beats": 12
+      }
+    ],
+    "climax": "wedding",
+    "pace": {
+      "prop": "pace",
+      "min": 1,
+      "max": 2
+    }
+  }
+}

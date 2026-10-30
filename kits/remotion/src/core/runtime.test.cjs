@@ -106,7 +106,7 @@ test('every catalog file has a registered template with the same composition ID,
   const { TEMPLATES, frameFor } = require('../templates/index.ts');
   const dir = path.join(__dirname, '..', '..', 'catalog');
   const ids = fs.readdirSync(dir).filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort();
-  assert.deepEqual(ids, ['album', 'comedy', 'doodle', 'dv-story', 'papercut-frame', 'starter']);
+  assert.deepEqual(ids, ['album', 'cinema', 'comedy', 'doodle', 'dv-story', 'editorial', 'memoir', 'papercut-frame', 'starter']);
   assert.deepEqual(Object.keys(TEMPLATES).sort(), ids);
   for (const id of ids) {
     const catalog = JSON.parse(fs.readFileSync(path.join(dir, `${id}.json`), 'utf8'));
@@ -231,4 +231,19 @@ test('the Album short ends 8 beats after its last shot, whatever the gallery siz
   const shots = Math.round((full - 1.2 - B(8 + 8)) / (4 * beat));
   assert.ok(shots > 1 && shots <= 12, `${shots} shots`);
   assert.ok(Math.abs(full - (B(8 + shots * 4 + 8) + 1.2)) < 1e-9);
+});
+
+test('a template timeline in the catalog matches the pages its code plays', () => {
+  const path = require('node:path');
+  const root = path.join(__dirname, '..', '..');
+  for (const id of ['cinema', 'editorial', 'memoir']) {
+    const catalog = JSON.parse(fs.readFileSync(path.join(root, `catalog/${id}.json`), 'utf8'));
+    const source = fs.readFileSync(path.join(root, `src/templates/${id}/index.tsx`), 'utf8');
+    const pages = [...source.matchAll(/^\s*\["([a-z0-9-]+)", .+, (\d+)\],$/gm)].map((m) => ({ id: m[1], beats: Number(m[2]) }));
+    assert.ok(pages.length > 10, id);
+    assert.deepEqual(catalog.timeline.pages, pages, id);
+    assert.ok(pages.some((p) => p.id === catalog.timeline.climax), id);
+    // whole bars, so every page change falls on a downbeat at any pace
+    assert.ok(pages.every((p) => p.beats % 4 === 0), id);
+  }
 });

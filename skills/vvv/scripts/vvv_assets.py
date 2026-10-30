@@ -81,24 +81,56 @@ def inventory_images(sources):
     return items, diagnostics
 
 
-def copy_normalized(items, public):
+# Photos are shown at most at frame size (about 1920 px), with room for slow zooms; camera originals
+# (5000+ px) only slow rendering down.
+MAX_SIZE = 2560
+
+
+def detect_faces(image):
+    """Face boxes as [x, y, w, h] shares of the image, largest first, or None without OpenCV.
+    OpenCV is optional (opencv-python-headless); it is never installed for the user."""
+    try:
+        import cv2
+        import numpy
+    except ImportError:
+        return None
+    small = image.convert('L')
+    small.thumbnail((1024, 1024))
+    gray = numpy.asarray(small)
+    cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    found = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=6, minSize=(24, 24))
+    w, h = small.size
+    boxes = [[round(x / w, 4), round(y / h, 4), round(bw / w, 4), round(bh / h, 4)] for x, y, bw, bh in found]
+    return sorted(boxes, key=lambda b: -b[2] * b[3])
+
+
+def copy_normalized(items, public, max_size=MAX_SIZE, faces=False):
+    """Copy each photo upright, downscaled to `max_size` on its long side (0 keeps the original size),
+    with face boxes when `faces` is set and OpenCV is available."""
     folder = Path(public) / 'photos'
     folder.mkdir(parents=True, exist_ok=True)
-    assets = []
+    assets, detected = [], 0
     for item in items:
+        processing = ['decode', 'normalize-exif-orientation']
         with Image.open(item['path']) as source:
             normalized = ImageOps.exif_transpose(source)
             has_alpha = 'A' in normalized.getbands() or 'transparency' in normalized.info
             image = normalized.convert('RGBA' if has_alpha else 'RGB')
+            if max_size and max(image.size) > max_size:
+                image.thumbnail((max_size, max_size), Image.LANCZOS)
+                processing.append(f'downscale-{max_size}')
+            boxes = detect_faces(image) if faces else None
+            if boxes is not None:
+                processing.append('detect-faces-opencv')
+                detected += 1
             suffix = '.png' if has_alpha else '.jpg'
             file = f"photos/{item['id']}{suffix}"
-            image.save(public / file, **({'compress_level': 6} if has_alpha else {'quality': 95}))
-        width, height = item['width'], item['height']
+            image.save(public / file, **({'compress_level': 6} if has_alpha else {'quality': 92}))
+        width, height = image.size
         assets.append({'id': item['id'], 'file': file, 'width': width, 'height': height,
                        'orientation': 'landscape' if width > height else 'portrait' if height > width else 'square',
                        'source': {'kind': 'local-image', 'name': item['name'], 'sha256': item['sha256']},
-                       'processing': ['decode', 'normalize-exif-orientation'],
-                       'faces': []})
+                       'processing': processing, 'faces': boxes or []})
     return assets
 
 

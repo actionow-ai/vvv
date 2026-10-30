@@ -89,6 +89,18 @@
       "bpm": 85
     },
     {
+      "file": "mixkit-possible-dreams.mp3",
+      "title": "Possible Dreams",
+      "author": "Eugenio Mininni",
+      "source": "https://mixkit.co/free-stock-music/",
+      "url": "https://assets.mixkit.co/music/599/599.mp3",
+      "license": "Mixkit Stock Music Free License",
+      "distribution": "download",
+      "bytes": 5100237,
+      "sha256": "ee6d055c20cccda716b6b63a154ef0dc825195b7061dc439abb8a623973f4798",
+      "bpm": 86.9
+    },
+    {
       "file": "mixkit-drum-roll.wav",
       "dir": "sfx",
       "title": "Drum Roll",

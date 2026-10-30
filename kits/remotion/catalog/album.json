@@ -399,5 +399,13 @@
       "VVV"
     ],
     "license": "MIT"
+  },
+  "shows": {
+    "couple": {
+      "groom": "opening and ending cards",
+      "bride": "opening and ending cards",
+      "date": "opening and ending cards",
+      "tagline": "opening title"
+    }
   }
 }

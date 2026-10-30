@@ -313,5 +313,12 @@
       "VVV"
     ],
     "license": "MIT"
+  },
+  "shows": {
+    "couple": {
+      "groom": "gag cards and ending",
+      "bride": "gag cards and ending",
+      "date": "opening card"
+    }
   }
 }

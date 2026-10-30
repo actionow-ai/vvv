@@ -4117,6 +4117,84 @@
         "sha256": "173baf710f6db240810c028643102053d4129cc4b40c1482fce34c96b0c283ac",
         "note": "Generated for the DV Story demo of the owner's original wedding films, from the fictional demo models; not customer media."
       }
+    },
+    {
+      "id": "memoir-demo-landmark-north",
+      "file": "photos/memoir-demo-landmark-north.png",
+      "width": 1200,
+      "height": 929,
+      "orientation": "landscape",
+      "cutout": true,
+      "faces": [],
+      "provenance": {
+        "kind": "fictional-demo",
+        "sourceName": "landmark-north.png",
+        "sha256": "514735153a929427f3b495097df3855bd0305bad4a849d6fb73ebb92cd1fd343",
+        "note": "A fictional northern city gate tower, die-cut, generated on 2026-10-30 with Codex image generation through the c2c route for the Memoir demo; transparent background; not customer media."
+      }
+    },
+    {
+      "id": "memoir-demo-landmark-south",
+      "file": "photos/memoir-demo-landmark-south.png",
+      "width": 819,
+      "height": 1098,
+      "orientation": "portrait",
+      "cutout": true,
+      "faces": [],
+      "provenance": {
+        "kind": "fictional-demo",
+        "sourceName": "landmark-south.png",
+        "sha256": "2588531cd447600e7f69204ffe5351d89ee3c3815f30c988ddce79879c5ad59b",
+        "note": "A fictional brick pagoda with a statue, die-cut, generated on 2026-10-30 with Codex image generation through the c2c route for the Memoir demo; transparent background; not customer media."
+      }
+    },
+    {
+      "id": "memoir-demo-kid-groom",
+      "file": "photos/memoir-demo-kid-groom.png",
+      "width": 707,
+      "height": 1022,
+      "orientation": "portrait",
+      "cutout": true,
+      "faces": [],
+      "provenance": {
+        "kind": "fictional-demo",
+        "sourceName": "kid-groom.png",
+        "sha256": "54fa30a7af370570a5ee00bc0a5317c661a52c2df3e86fb287c9eec6d491bfa7",
+        "note": "Cut-out of the fictional groom-01-childhood-01, generated on 2026-10-30 with Codex image generation through the c2c route for the Memoir demo; transparent background; not customer media."
+      },
+      "source": "groom-01-childhood-01"
+    },
+    {
+      "id": "memoir-demo-kid-bride",
+      "file": "photos/memoir-demo-kid-bride.png",
+      "width": 955,
+      "height": 1183,
+      "orientation": "portrait",
+      "cutout": true,
+      "faces": [],
+      "provenance": {
+        "kind": "fictional-demo",
+        "sourceName": "kid-bride.png",
+        "sha256": "3d0b56afbb3df030d43d28fc640f80c1895934bcb2215b5cd5ed0d95f607ccf0",
+        "note": "Cut-out of the fictional bride-01-childhood-02, generated on 2026-10-30 with Codex image generation through the c2c route for the Memoir demo; transparent background; not customer media."
+      },
+      "source": "bride-01-childhood-02"
+    },
+    {
+      "id": "memoir-demo-couple",
+      "file": "photos/memoir-demo-couple.png",
+      "width": 923,
+      "height": 1200,
+      "orientation": "portrait",
+      "cutout": true,
+      "faces": [],
+      "source": "couple-08-wedding-s1-studio-06",
+      "provenance": {
+        "kind": "fictional-demo",
+        "sourceName": "couple.png",
+        "sha256": "08d87c620d68fd93ce86e24bc9168e088f22496485ebe75534b13198381109da",
+        "note": "Cut-out of the fictional couple-08-wedding-s1-studio-06, generated on 2026-10-30 with Codex image generation through the c2c route for the Memoir demo; transparent background; not customer media."
+      }
     }
   ]
 }

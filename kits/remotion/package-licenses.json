@@ -61,6 +61,14 @@
       "redistribute": true
     },
     {
+      "id": "personal-songs",
+      "match": ["public/music/personal-*"],
+      "license": "Personal use only; rights stay with the rights holders",
+      "source": "Songs the user fetched with their own musicdl install for their own film (vvv_song.py)",
+      "redistribute": false,
+      "note": "Never packaged: a project that contains one cannot be packed until the song is replaced."
+    },
+    {
       "id": "user-media",
       "kinds": ["project"],
       "match": ["public/photos/**", "public/clips/**", "public/vo/**/*.mp3", "public/music/**", "public/sfx/**"],

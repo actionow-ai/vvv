@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-29",
+  "scope": "Full-length gallery preview of Editorial, rendered at half scale from the current template code. Automated checks plus a review of frames sampled every 4 s; not a frame-by-frame or subjective listening acceptance.",
+  "renders": [
+    {
+      "compositionId": "VVV-Editorial",
+      "video": "editorial.mp4",
+      "durationSeconds": 85.333,
+      "width": 960,
+      "height": 540,
+      "renderCommand": "npx remotion render examples/cases.tsx VVV-Editorial OUT.mp4 --scale=0.5 --crf=24 --audio-bitrate=128k",
+      "encodeCommand": "ffmpeg -i OUT.mp4 -c:v libx264 -preset slow -crf 28 -profile:v high -pix_fmt yuv420p -movflags +faststart -c:a copy PUBLIC.mp4",
+      "highlightSeconds": [
+        4.2,
+        26.0
+      ],
+      "sourceFingerprintFile": "template-source-2026-10-29-editorial.json",
+      "checks": [
+        {
+          "code": "RESOLUTION",
+          "status": "warning",
+          "message": "Short side is 540px; review delivery quality at 1080px or more."
+        },
+        {
+          "code": "AUDIO",
+          "status": "passed",
+          "message": "Mean level -14.0 dBFS.",
+          "meanDbfs": -14.0,
+          "longestSilenceSeconds": 0.5
+        },
+        {
+          "code": "STILL",
+          "status": "passed",
+          "message": "No still stretch longer than 3s.",
+          "runs": [],
+          "stillShare": 0.0
+        },
+        {
+          "code": "BEAT_SYNC",
+          "status": "passed",
+          "message": "Strongest visual changes sit 47 ms from the nearest beat on average.",
+          "peaks": 30,
+          "meanMs": 47,
+          "within66ms": 0.8,
+          "worst": [
+            {
+              "t": 50.67,
+              "beat": 79,
+              "beatAt": 50.43,
+              "offsetMs": 235,
+              "strength": 6.0
+            },
+            {
+              "t": 30.43,
+              "beat": 47,
+              "beatAt": 30.23,
+              "offsetMs": 208,
+              "strength": 8.1
+            },
+            {
+              "t": 65.67,
+              "beat": 103,
+              "beatAt": 65.57,
+              "offsetMs": 101,
+              "strength": 15.8
+            },
+            {
+              "t": 61.23,
+              "beat": 96,
+              "beatAt": 61.15,
+              "offsetMs": 85,
+              "strength": 5.1
+            },
+            {
+              "t": 20.2,
+              "beat": 31,
+              "beatAt": 20.12,
+              "offsetMs": 81,
+              "strength": 6.8
+            },
+            {
+              "t": 56.07,
+              "beat": 88,
+              "beatAt": 56.14,
+              "offsetMs": -72,
+              "strength": 5.7
+            }
+          ]
+        }
+      ],
+      "status": "passed"
+    }
+  ],
+  "beatMaps": "The fixture track's beat map (public/music/mixkit-when-in-love.beats.json); trimBeforeSec is 0.",
+  "changes": [
+    "Editorial: new template, recreated from a reference film; first published preview."
+  ],
+  "visualReview": "Frames every 4 s of the public file reviewed as a tiled sheet: complete, no black or frozen frames, every page and transition present."
+}

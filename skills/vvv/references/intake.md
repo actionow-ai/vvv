@@ -11,7 +11,7 @@ For each relevant source, retain its location, actual media type, access status,
 | Photo files or folder | Inventory and decode; preserve requested ordering; inspect candidate images or a contact sheet for selection and crop | A timestamp or folder name does not establish an event, identity, or chronology |
 | Screenshot | Inspect composition, color, hierarchy, and visible copy | One still cannot establish motion, pacing, or sound |
 | Video or recording | Probe supported metadata and inspect relevant timed segments; record coverage | Reading metadata or a few frames is not watching the whole clip |
-| URL or shared folder | Use the available connector, browser, or download capability; identify the content actually obtained | Opening a page does not establish access to its embedded media |
+| URL or shared folder | Use the available connector, browser, or download capability (百度网盘: [cloud storage](cloud-storage.md); a 抖音/小红书/快手/TikTok reference: `vvv_video.py`, see [recreation](recreation.md)); identify the content actually obtained | Opening a page does not establish access to its embedded media |
 | Audio or story text | Identify music, original sound, narration, subtitles, and factual source roles | Transcription and inferred beats need checking where they affect the film |
 
 The kit initializer's photo intake supports local files and folders, not arbitrary links or every media format. Use the separate [media tools](media-processing.md) to probe a local recording, extract clips or audio and sample frames. Confirm decoding support rather than trusting extensions. Keep the originals intact; diagnose unreadable files and unsafe paths. Do not silently extend folder intake through links outside the requested source.

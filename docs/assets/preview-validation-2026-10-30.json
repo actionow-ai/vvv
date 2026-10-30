@@ -1,0 +1,181 @@
+{
+  "date": "2026-10-30",
+  "scope": "Full-length gallery previews rendered at half scale from the current template code on this date. Automated checks plus a review of frames sampled every 4 s; not a frame-by-frame or subjective listening acceptance.",
+  "renders": [
+    {
+      "compositionId": "VVV-Cinema",
+      "video": "cinema.mp4",
+      "durationSeconds": 115.84,
+      "width": 960,
+      "height": 540,
+      "renderCommand": "npx remotion render examples/cases.tsx VVV-Cinema OUT.mp4 --scale=0.5 --crf=24 --audio-bitrate=128k",
+      "encodeCommand": "ffmpeg -i OUT.mp4 -c:v libx264 -preset slow -crf 28 -profile:v high -pix_fmt yuv420p -movflags +faststart -c:a copy PUBLIC.mp4",
+      "highlightSeconds": [
+        28.0,
+        52.0
+      ],
+      "sourceFingerprintFile": "template-source-2026-10-30-cinema.json",
+      "checks": [
+        {
+          "code": "RESOLUTION",
+          "status": "warning",
+          "message": "Short side is 540px; review delivery quality at 1080px or more."
+        },
+        {
+          "code": "AUDIO",
+          "status": "passed",
+          "message": "Mean level -18.4 dBFS.",
+          "meanDbfs": -18.4,
+          "longestSilenceSeconds": 0.5
+        },
+        {
+          "code": "STILL",
+          "status": "passed",
+          "message": "No still stretch longer than 3s.",
+          "runs": [],
+          "stillShare": 0.16
+        },
+        {
+          "code": "BEAT_SYNC",
+          "status": "passed",
+          "message": "Strongest visual changes sit 53 ms from the nearest beat on average.",
+          "peaks": 30,
+          "meanMs": 53,
+          "within66ms": 0.73,
+          "worst": [
+            {
+              "t": 20.3,
+              "beat": 28,
+              "beatAt": 20.0,
+              "offsetMs": 297,
+              "strength": 7.6
+            },
+            {
+              "t": 20.9,
+              "beat": 29,
+              "beatAt": 20.72,
+              "offsetMs": 178,
+              "strength": 3.9
+            },
+            {
+              "t": 76.07,
+              "beat": 109,
+              "beatAt": 76.24,
+              "offsetMs": -174,
+              "strength": 13.1
+            },
+            {
+              "t": 69.77,
+              "beat": 100,
+              "beatAt": 69.67,
+              "offsetMs": 97,
+              "strength": 11.2
+            },
+            {
+              "t": 91.5,
+              "beat": 131,
+              "beatAt": 91.42,
+              "offsetMs": 79,
+              "strength": 14.3
+            },
+            {
+              "t": 63.47,
+              "beat": 91,
+              "beatAt": 63.39,
+              "offsetMs": 78,
+              "strength": 10.1
+            },
+            {
+              "t": 19.93,
+              "beat": 28,
+              "beatAt": 20.0,
+              "offsetMs": -70,
+              "strength": 5.7
+            },
+            {
+              "t": 27.7,
+              "beat": 39,
+              "beatAt": 27.63,
+              "offsetMs": 70,
+              "strength": 4.6
+            }
+          ]
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "compositionId": "VVV-Memoir",
+      "video": "memoir.mp4",
+      "durationSeconds": 154.837,
+      "width": 960,
+      "height": 540,
+      "renderCommand": "npx remotion render examples/cases.tsx VVV-Memoir OUT.mp4 --scale=0.5 --crf=24 --audio-bitrate=128k",
+      "encodeCommand": "ffmpeg -i OUT.mp4 -c:v libx264 -preset slow -crf 28 -profile:v high -pix_fmt yuv420p -movflags +faststart -c:a copy PUBLIC.mp4",
+      "highlightSeconds": [
+        13.6,
+        40.0
+      ],
+      "sourceFingerprintFile": "template-source-2026-10-30-memoir.json",
+      "checks": [
+        {
+          "code": "RESOLUTION",
+          "status": "warning",
+          "message": "Short side is 540px; review delivery quality at 1080px or more."
+        },
+        {
+          "code": "AUDIO",
+          "status": "passed",
+          "message": "Mean level -20.2 dBFS.",
+          "meanDbfs": -20.2,
+          "longestSilenceSeconds": 4.5
+        },
+        {
+          "code": "STILL",
+          "status": "passed",
+          "message": "No still stretch longer than 3s.",
+          "runs": [],
+          "stillShare": 0.08
+        },
+        {
+          "code": "BEAT_SYNC",
+          "status": "passed",
+          "message": "Strongest visual changes sit 38 ms from the nearest beat on average.",
+          "peaks": 30,
+          "meanMs": 38,
+          "within66ms": 0.9,
+          "worst": [
+            {
+              "t": 28.77,
+              "beat": 52,
+              "beatAt": 28.48,
+              "offsetMs": 283,
+              "strength": 12.2
+            },
+            {
+              "t": 75.87,
+              "beat": 139,
+              "beatAt": 75.79,
+              "offsetMs": 73,
+              "strength": 6.3
+            },
+            {
+              "t": 45.6,
+              "beat": 83,
+              "beatAt": 45.53,
+              "offsetMs": 73,
+              "strength": 5.2
+            }
+          ]
+        }
+      ],
+      "status": "passed"
+    }
+  ],
+  "beatMaps": "The fixture track's beat map (public/music/mixkit-possible-dreams.beats.json); trimBeforeSec is 0. The fixture track's beat map (public/music/mixkit-first-kiss.beats.json); trimBeforeSec is 0.",
+  "changes": [
+    "Cinema: new template, recreated from a reference film; first published preview.",
+    "Memoir: new template, recreated from a reference film; first published preview."
+  ],
+  "visualReview": "Frames every 4 s of the public file reviewed as a tiled sheet: complete, no black or frozen frames, every page and transition present."
+}

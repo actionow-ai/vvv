@@ -76,6 +76,10 @@ def validate_catalog(catalog, template):
             fail('slots', 'Slot names must be nonempty strings.')
         if not isinstance(spec, dict):
             fail(location, 'Expected a slot object.')
+        groups = spec.get('groups')
+        if groups is not None and (not isinstance(groups, list) or not groups or
+                                   not all(isinstance(g, int) and g > 0 for g in groups) or sum(groups) != spec.get('count')):
+            fail(f'{location}.groups', 'Expected positive group sizes that add up to count.')
         kind = spec.get('kind')
         if kind not in ('single', 'array', 'tokens'):
             fail(location + '.kind', 'Expected single, array or tokens.')
@@ -318,6 +322,19 @@ def describe_template(kit, template, frame_format=None, script='scripts/vvv.py')
             'slots': [e['slot'] if len(e) == 1 else e for e in x['slots']]} for x in format_arc(catalog, frame_format)]
     chosen = [] if frame_format == catalog['defaultFormat'] else ['--format', frame_format]
     command = f'python3 {script} init ' + ' '.join(source + chosen)
+    # Pages in beats become seconds only with a song: report them at the default track, so a rushed
+    # template shows before rendering. `music fit` recomputes them for the project's own track.
+    extra = {}
+    if isinstance(catalog.get('shows'), dict):
+        extra['shows'] = catalog['shows']
+    if isinstance(catalog.get('timeline'), dict):
+        timeline = catalog['timeline']
+        extra['timeline'] = {'climax': timeline.get('climax'), 'pace': timeline.get('pace'),
+                             'pages': [f"{p['id']}:{p['beats']}" for p in timeline.get('pages', [])]}
+        beats_file = root / 'public' / Path(music['src']).with_suffix('.beats.json') if root and music.get('src') else None
+        if beats_file and beats_file.is_file():
+            from vvv_music import timing
+            extra['timing'] = {'track': music['src'], **timing(catalog, read_json(beats_file))}
     return {'status': 'passed', 'id': catalog['id'], 'kind': catalog.get('kind', 'template'),
             'title': catalog.get('title', catalog['id']), 'description': catalog.get('description', ''),
             'defaultFormat': catalog['defaultFormat'], 'format': frame_format, 'formats': formats, 'slots': slots,
@@ -329,7 +346,7 @@ def describe_template(kit, template, frame_format=None, script='scripts/vvv.py')
                       k not in ('photos', 'copy', 'couple', 'fps', 'format', 'music')},
             'music': {'required': bool(catalog.get('music', {}).get('required')), 'src': music.get('src', ''),
                       **({'downloadOnly': music_download} if music_download is not None else {})},
-            'fixture': fixture, **({'arc': arc} if arc else {}),
+            'fixture': fixture, **({'arc': arc} if arc else {}), **extra,
             'next': [command + ' --photos PHOTOS_DIR --output PROJECT', command + ' --example --output PROJECT']}
 
 
@@ -460,6 +477,96 @@ def copy_kit(kit, destination):
             shutil.copy2(source, destination / name)
 
 
+KIT_BASELINE = 'kit-files.json'
+KIT_SKIP = {'.DS_Store', '__pycache__', 'node_modules'}
+
+
+def kit_snapshot(kit, template):
+    """What init copies from the kit, as {project path: bytes reader}: the runtime files, the template's
+    props schema, and package.json with the project's own scripts."""
+    files = {}
+    for name in KIT_FILES:
+        source = kit / name
+        if not source.exists():
+            continue
+        if source.is_dir():
+            for path in sorted(source.rglob('*')):
+                parts = path.relative_to(kit).parts
+                if (path.is_file() and not any(p in KIT_SKIP for p in parts) and not path.name.endswith(('.test.cjs', '.test.mjs'))
+                        and parts[:2] != ('public', 'photos')):
+                    files[path.relative_to(kit).as_posix()] = path.read_bytes
+        elif name == 'package.json':
+            files[name] = lambda source=source: (json.dumps(runtime_scripts(read_json(source)), ensure_ascii=False, indent=2) + '\n').encode()
+        else:
+            files[name] = source.read_bytes
+    schema = kit / 'schema' / f'{template}.json'
+    if schema.is_file():
+        files[PROPS_SCHEMA] = schema.read_bytes
+    return files
+
+
+def write_kit_baseline(project, kit, template):
+    """Record the hash of every kit file as copied, so update can tell kit changes from local edits."""
+    hashes = {}
+    for rel in kit_snapshot(kit, template):
+        target = project / rel
+        if target.is_file():
+            hashes[rel] = hashlib.sha256(target.read_bytes()).hexdigest()
+    write_json(project / KIT_BASELINE, {'version': '0.1', 'template': template, 'files': hashes})
+
+
+def update_project(project, kit, apply=False, take_kit=False):
+    """Bring a project's template code and kit files up to date: three-way by file (kit now, project now,
+    kit as copied). Unchanged files take the kit's version; files edited in the project are conflicts and
+    stay, unless take_kit. Without apply it only reports."""
+    project = Path(project).expanduser().resolve()
+    root = kit_root(kit)
+    template = read_json(project / 'inputs.json')['template']
+    load_catalog(root, template)
+    baseline_path = project / KIT_BASELINE
+    baseline = read_json(baseline_path).get('files', {}) if baseline_path.is_file() else {}
+    report = {'updated': [], 'added': [], 'conflicts': [], 'unchanged': 0}
+    snapshot = kit_snapshot(root, template)
+    pending = []
+    for rel, read in snapshot.items():
+        data = read()
+        new = hashlib.sha256(data).hexdigest()
+        target = safe_output_path(project, rel) if rel != PROPS_SCHEMA else project / PROPS_SCHEMA
+        if not target.exists():
+            report['added'].append(rel)
+            pending.append((target, data, rel, new))
+            continue
+        if target.is_symlink() or not target.is_file():
+            raise ValueError(f'PROJECT_SYMLINK: {rel} must be a regular file.')
+        current = hashlib.sha256(target.read_bytes()).hexdigest()
+        if current == new:
+            report['unchanged'] += 1
+            baseline[rel] = new
+        elif baseline.get(rel) == current:
+            report['updated'].append(rel)
+            pending.append((target, data, rel, new))
+        else:
+            report['conflicts'].append(rel)
+            if take_kit:
+                pending.append((target, data, rel, new))
+    if apply:
+        for target, data, rel, digest in pending:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
+            baseline[rel] = digest
+        write_json(baseline_path, {'version': '0.1', 'template': template, 'files': baseline})
+    result = {'status': 'passed', 'applied': apply, **{k: (v if isinstance(v, int) else v[:40]) for k, v in report.items()},
+              'counts': {k: len(v) for k, v in report.items() if isinstance(v, list)}}
+    if not baseline_path.is_file() and not apply:
+        result['note'] = 'No kit-files.json (a project from before update existed): every difference is a conflict.'
+    if report['conflicts'] and not take_kit:
+        result['next'] = {'action': 'fix', 'hint': 'Conflicts are files edited in the project and changed in the kit. Diff each, '
+                          'carry the kit change into the local edit by hand, or rerun with --take-kit to discard the local edits.'}
+    if apply:
+        result['validation'] = validate_project(project)['status']
+    return result
+
+
 def example_inputs(root, catalog, template):
     """The template's shipped demo inputs (catalog package.fixture) and the kit photo records they name."""
     relative = (catalog.get('package') or {}).get('fixture')
@@ -487,7 +594,8 @@ def heic_note(error, diagnostics):
     return error
 
 
-def create_project(kit, template, sources, output, allow_repeat=False, frame_format=None, example=False):
+def create_project(kit, template, sources, output, allow_repeat=False, frame_format=None, example=False,
+                   max_size=None, faces=False):
     """Create a project from a kit template ID, or from a template package when `template` is a .vvv file.
     With `example`, the project uses the template's shipped demo inputs and photos instead of `sources`."""
     package = Path(template).expanduser() if str(template).endswith('.vvv') else None
@@ -571,7 +679,12 @@ def create_project(kit, template, sources, output, allow_repeat=False, frame_for
             assets = items
             props.setdefault('fps', 30)
         else:
-            assets = copy_normalized(found, public)
+            from vvv_assets import MAX_SIZE, detect_faces
+            if faces and detect_faces(Image.new('RGB', (8, 8))) is None:
+                diagnostics.append(diagnostic('FACES_UNAVAILABLE', 'Face detection needs OpenCV (opencv-python-headless), '
+                                              'which is not installed; photos are cropped around their upper middle. '
+                                              'Ask the user before installing it.'))
+            assets = copy_normalized(found, public, MAX_SIZE if max_size is None else max_size, faces)
             props = deepcopy(catalog['defaultProps'])
             props['photos'] = mapping
             props['fps'] = int(props.get('fps', 30))
@@ -586,6 +699,8 @@ def create_project(kit, template, sources, output, allow_repeat=False, frame_for
                     'runtime': {'engine': 'remotion', 'version': remotion},
                     'workflow': {'mode': 'sample-first', 'stage': 'draft', 'approvedConstraints': []}}
         write_json(temporary / 'vvv.json', manifest)
+        if not package:
+            write_kit_baseline(temporary, kit, template)
         # Kit and package projects get the same agent notes; project instructions go outside the generated block.
         from vvv_package import agents_text, project_agents
         (temporary / 'AGENTS.md').write_bytes(project_agents(None, agents_text(manifest, 'PROJECT.md')))

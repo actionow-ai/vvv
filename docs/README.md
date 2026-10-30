@@ -7,6 +7,7 @@ Build a template once and reuse it across projects and coding agents. A VVV temp
 - [Getting started](getting-started.md): install the skill, say what you want, review the sample, get the film.
 - [Templates](templates.md): the five templates, styles to choose from, formats, previews and the effect.
 - [Capabilities](capabilities.md): what the agent can do, including recreating a reference video, and where the boundaries are.
+- [Integrations](integrations.md): musicdl, 百度网盘 and TikHub, what each does and how VVV uses it.
 - [Media walkthrough](../examples/media-workflow.md): inspect a video, sample frames and cut a range.
 - [Examples](../examples/README.md): fixtures, agent briefs and image requests to adapt.
 - [Troubleshooting](troubleshooting.md): what the agent handles, and what only you can decide.

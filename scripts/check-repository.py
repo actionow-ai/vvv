@@ -191,6 +191,31 @@ def check_vendor(root, candidates, errors):
         errors.append('%s: invalid vendor metadata: %s' % (manifest.relative_to(root), error))
 
 
+def check_vendored_folders(root, candidates, errors):
+    """Every other vendor folder: each file listed in its UPSTREAM.json and unchanged, nothing unlisted."""
+    for manifest in sorted((root / SKILL / 'vendor').glob('*/UPSTREAM.json')):
+        folder = manifest.parent
+        if folder.name == 'c2c_img':
+            continue
+        try:
+            upstream = json.loads(manifest.read_text(encoding='utf-8'))
+            if not re.fullmatch(r'[0-9a-f]{40}', upstream['commit']):
+                raise ValueError('expected a full upstream commit SHA')
+            hashes = upstream['sha256']
+            present = {p.relative_to(folder).as_posix() for p in folder.rglob('*')
+                       if p.is_file() and p.name != 'UPSTREAM.json' and p.relative_to(root) in candidates}
+            for name in sorted(present - set(hashes)):
+                errors.append('%s: file not recorded in UPSTREAM.json' % (folder / name).relative_to(root))
+            for name, expected in hashes.items():
+                target = folder / name
+                if name not in present:
+                    errors.append('%s: recorded vendor file is missing' % target.relative_to(root))
+                elif hashlib.sha256(target.read_bytes()).hexdigest() != expected:
+                    errors.append('%s: vendor SHA-256 mismatch' % target.relative_to(root))
+        except (KeyError, TypeError, ValueError, OSError) as error:
+            errors.append('%s: invalid vendor metadata: %s' % (manifest.relative_to(root), error))
+
+
 def check_portable(root, candidates):
     with tempfile.TemporaryDirectory(prefix='vvv-portable-') as directory:
         destination = Path(directory) / 'vvv'
@@ -245,6 +270,7 @@ def main():
             documents = check_links(root, candidates, errors)
             check_skill(root, candidates, errors)
             check_vendor(root, candidates, errors)
+            check_vendored_folders(root, candidates, errors)
         if not errors and args.portable:
             check_portable(root, candidates)
     except (OSError, UnicodeError, ValueError, subprocess.SubprocessError) as error:

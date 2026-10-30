@@ -1,0 +1,114 @@
+{
+  "template": "memoir",
+  "props": {
+    "couple": {
+      "groom": "陆知行",
+      "bride": "苏念",
+      "groomEn": "LU ZHIXING",
+      "brideEn": "SU NIAN",
+      "date": "2026-09-19",
+      "tagline": "我们结婚啦"
+    },
+    "photos": {
+      "intro": [
+        "couple-08-wedding-s2-seaside-01",
+        "couple-08-wedding-s8-night-03",
+        "couple-08-wedding-s4-garden-04",
+        "couple-08-wedding-s7-highland-01"
+      ],
+      "couple": "memoir-demo-couple",
+      "homeGroom": "memoir-demo-landmark-north",
+      "homeBride": "memoir-demo-landmark-south",
+      "kidGroom": "memoir-demo-kid-groom",
+      "kidBride": "memoir-demo-kid-bride",
+      "childhood": [
+        "groom-01-childhood-02",
+        "bride-01-childhood-01",
+        "groom-01-childhood-03",
+        "bride-01-childhood-03",
+        "groom-02-school-01",
+        "bride-02-school-01",
+        "groom-02-school-02",
+        "bride-02-school-02"
+      ],
+      "chats": [
+        "couple-03-dating-03",
+        "couple-06-travel-01",
+        "couple-07-proposal-02"
+      ],
+      "ch1": [
+        "couple-03-dating-01",
+        "couple-03-dating-02"
+      ],
+      "ch2": [
+        "couple-03-dating-04",
+        "couple-08-wedding-s6-street-03"
+      ],
+      "ch3": [
+        "couple-04-daily-01",
+        "couple-04-daily-02"
+      ],
+      "ch4": [
+        "couple-05-distance-01",
+        "couple-07-proposal-01"
+      ],
+      "license": "couple-08-wedding-s1-studio-04",
+      "love1": [
+        "couple-08-wedding-s6-street-01",
+        "couple-08-wedding-s6-street-02"
+      ],
+      "love2": [
+        "couple-08-wedding-s3-interior-01",
+        "couple-08-wedding-s3-interior-03"
+      ],
+      "love3": [
+        "couple-08-wedding-s5-chapel-01",
+        "couple-08-wedding-s5-chapel-02"
+      ],
+      "love4": [
+        "couple-08-wedding-s8-night-01",
+        "couple-08-wedding-s8-night-02"
+      ]
+    },
+    "copy": {
+      "welcome": "欢迎来到我们的婚礼",
+      "intro_1": "“人海里，刚好遇见你”",
+      "intro_2": "“多幸运，我们成了我们”",
+      "thanks": "谢谢你们今天能来｜陪我们走进这一天",
+      "born_title": "1996年，我们来到这个世界",
+      "home_groom": "北方小城",
+      "home_bride": "南方小镇",
+      "strip_1": "后来我们才知道",
+      "strip_2": "我们都被好好爱着长大",
+      "jump": "直到 {since}",
+      "chat_lines": "朋友的一句介绍｜让我们加上了微信｜从早安聊到晚安",
+      "into": "两个人的故事，从这里开始",
+      "chapter_1": "在银杏街，第一次并肩走",
+      "chapter_2": "一起过的每一个生日",
+      "chapter_3": "有了属于我们的小家",
+      "chapter_4": "走过分开的站台，等来那句我愿意",
+      "license": "2026.5.20｜这一年，我们领证啦",
+      "love_title": "爱是什么",
+      "love_1": "是一起找遍｜街角的每一家小馆",
+      "love_sub_1": "是把最后一口留给你",
+      "love_2": "是你记得｜我随口说过的话",
+      "love_sub_2": "是每一次都被放在心上",
+      "love_3": "是一起把日子｜过成喜欢的样子",
+      "love_sub_3": "是吵吵闹闹，也从不松开的手",
+      "love_4": "是往后余生｜都是你",
+      "love_sub_4": "是今天，也是以后的每一天",
+      "letter": "今天，我们在大家的见证下举行婚礼｜往后的日子，我们会好好相爱｜一起去更远的地方，看更多的风景｜把平凡的日子过得热气腾腾｜谢谢爸爸妈妈，谢谢每一位朋友｜因为你们，我们更懂得什么是爱",
+      "ending": "愿今天的每一位｜都被温柔以待"
+    },
+    "music": {
+      "src": "music/mixkit-first-kiss.mp3",
+      "volume": 0.9,
+      "trimBeforeSec": 0,
+      "fadeInSec": 0.3,
+      "fadeOutSec": 3
+    },
+    "fps": 30,
+    "pace": 1,
+    "since": "2021-04-17"
+  }
+}

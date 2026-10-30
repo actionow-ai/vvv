@@ -1,0 +1,14 @@
+{
+  "doodleArrow": {
+    "width": 600,
+    "height": 447,
+    "source": "Codex image generation via the c2c route, 2026-10-30, with a crop of the reference as style reference",
+    "sourceSha256": "1a2a5641e986d103b5b6ea98862d037e1af73a028a84cd5be2b8fbbafead3fe5"
+  },
+  "filmFrame": {
+    "width": 1920,
+    "height": 1080,
+    "source": "Codex image generation via the c2c route, 2026-10-30, with a frame of the reference as style reference",
+    "sourceSha256": "627d2fd03ac0116a12d7d5c1efe96d276d32fe1fe5e86596bbdbecfb6cb189ef"
+  }
+}

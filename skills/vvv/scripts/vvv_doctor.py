@@ -25,6 +25,47 @@ def _version(command):
     return output or None
 
 
+SHELL = Path('node_modules') / '.remotion' / 'chrome-headless-shell'
+CACHE = Path.home() / '.vvv' / 'cache' / 'chrome-headless-shell'
+
+
+def chrome_sources(kit):
+    """Chrome Headless Shell copies this computer already has: the VVV cache, then the kit's install."""
+    return [p for p in (CACHE, Path(kit) / SHELL if kit else None) if p and p.is_dir() and any(p.iterdir())]
+
+
+def provide_chrome(project, kit):
+    """Give a project the Chrome Headless Shell Remotion needs without downloading it again.
+    Returns where it came from, or None when the first render must download it."""
+    target = Path(project) / SHELL
+    if target.is_dir() and any(target.iterdir()):
+        return 'project'
+    for source in chrome_sources(kit):
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(source, target, symlinks=True)
+        return str(source)
+    return None
+
+
+def cache_chrome(project):
+    """After a render downloaded the shell, keep a copy for the next project."""
+    source = Path(project) / SHELL
+    if source.is_dir() and any(source.iterdir()) and not CACHE.is_dir():
+        CACHE.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(source, CACHE, symlinks=True)
+
+
+def ffmpeg_location(kit):
+    """FFmpeg on PATH, else Remotion's in the kit (which needs its own libraries; the helpers set them)."""
+    if shutil.which('ffmpeg'):
+        return 'PATH', shutil.which('ffmpeg')
+    if kit:
+        found = sorted((Path(kit) / 'node_modules' / '@remotion').glob('compositor-*/ffmpeg*'))
+        if found:
+            return 'kit', str(found[0])
+    return None, None
+
+
 def doctor(kit, project, run, ask_user, fix, script, requirements):
     checks = []
 
@@ -76,20 +117,25 @@ def doctor(kit, project, run, ask_user, fix, script, requirements):
             run('git', 'clone', '--depth', '1', REPOSITORY, str(target),
                 then=f'Pass --kit {target / "kits" / "remotion"} to later commands, or set VVV_KIT to it.'))
 
-    if project:
-        _project_checks(Path(project).expanduser().resolve(), add, run, fix)
-    elif shutil.which('ffmpeg'):
-        add('FFMPEG', 'passed', 'ffmpeg is on PATH.')
+    where, ffmpeg = ffmpeg_location(kit)
+    if where == 'PATH':
+        add('FFMPEG', 'passed', f'ffmpeg at {ffmpeg}.')
+    elif where == 'kit':
+        add('FFMPEG', 'passed', f"No ffmpeg on PATH; the helpers use Remotion's at {ffmpeg} (frames are tiled with Pillow).")
+    elif kit and (Path(kit) / 'package.json').is_file():
+        add('FFMPEG', 'warning', 'No ffmpeg yet: installing the kit\'s renderer provides one.', run('npm', 'ci', cwd=Path(kit)))
     else:
-        add('FFMPEG', 'warning', 'No ffmpeg on PATH. vvv check uses the one Remotion installs into a project, '
-                                 'so pass --project once a project exists.')
+        add('FFMPEG', 'warning', 'No ffmpeg on PATH; check and the reference tools use the one a project installs.')
+
+    if project:
+        _project_checks(Path(project).expanduser().resolve(), add, run, fix, kit)
 
     failed = [c for c in checks if c['status'] == 'failed']
     return {'status': 'failed' if failed else 'passed', 'checks': checks,
             **({'next': [c['next'] for c in failed]} if failed else {})}
 
 
-def _project_checks(project, add, run, fix):
+def _project_checks(project, add, run, fix, kit=None):
     if not (project / 'inputs.json').is_file():
         add('PROJECT', 'failed', f'{project} is not a vvv project (no inputs.json).',
             fix('Pass the project directory created by vvv.py init.'))
@@ -98,6 +144,13 @@ def _project_checks(project, add, run, fix):
         add('PROJECT_DEPENDENCIES', 'passed', 'Project dependencies are installed.')
     else:
         add('PROJECT_DEPENDENCIES', 'failed', 'Project dependencies are not installed.', run('npm', 'ci', cwd=project))
+    shell = project / SHELL
+    if shell.is_dir() and any(shell.iterdir()):
+        add('CHROME', 'passed', 'Chrome Headless Shell is in the project.')
+    elif chrome_sources(kit):
+        add('CHROME', 'passed', f'Chrome Headless Shell will be copied from {chrome_sources(kit)[0]} at the first render.')
+    else:
+        add('CHROME', 'warning', 'The first render downloads Chrome Headless Shell (about 100 MB); later projects reuse it.')
     try:
         from vvv_project import validate_project
         validation = validate_project(project)

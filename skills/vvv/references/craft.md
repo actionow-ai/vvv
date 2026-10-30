@@ -23,11 +23,27 @@ Cut to the actual track, not to a guessed tempo.
 
 - **Measure the music.** `npm run beats -- public/music/<file>` writes `<file>.beats.json`. Check that the reported BPM is plausible: analyzers can lock onto half or double tempo, or onto a related ratio when the audio is a mix. Rerun with `--bpm-min` / `--bpm-max` around the tempo you hear.
 - **Plan in whole beats.** Write each section's length as a number of beats (welcome 8, name reveal 8, each photo spread 8). The template converts beats to seconds through the beat map, so a different song retimes the film instead of breaking it. Fractional beat spacing drifts off the grid.
-- **Put the peak of the motion on the beat.** Viewers and `check` see a change where the picture changes fastest. A hard cut peaks on its frame. An entrance that decelerates from a beat (ease-out, starting on the beat) peaks on that beat. An exit that accelerates into a beat (ease-in, ending on the beat) peaks there too. Ease-in-out motion peaks halfway, between beats, so avoid it for anything that should hit.
+- **Put the peak of the motion on the beat.** Viewers and `check` see a change where the picture changes fastest. A hard cut peaks on its frame; other moves peak somewhere inside their duration, so start them early by the right amount (next section). Ease-in-out motion peaks halfway, between beats, so avoid it for anything that should hit.
 - **Give weight to the grid.** Big changes (new scene, new page) on bar starts; smaller accents (a line of text, a sticker, a pulse) on the beats in between. Not every beat needs an event.
 - **Two timing styles exist in the kit.** Starter runs on a measured beat clock (`core/beat-clock.ts`): scenes are written in beat numbers. Album, Doodle and Comedy keep authored choreography in seconds and warp it onto the beats (`makeWarp` with `hits.json`). After changing motion in a warped template, re-measure its peaks with `scripts/calibrate.py` (see [projects](projects.md)).
 
 Check: `BEAT_SYNC` passes at 66 ms or less (two frames at 30 fps). The current templates measure 24–53 ms.
+
+## Land the change on the beat
+
+Where a move peaks depends on what it does, not only on its easing. Measured on the Editorial template (ease-out entrances over 1.2–1.6 beats, about 0.6 s per beat):
+
+| Move | Where its biggest change falls | Start it |
+|---|---|---|
+| Slide in (the picture moves into place) | About 0.4 beat after it starts: more of it is on screen while it is still fast | 0.4 beat before the beat |
+| Open from an edge (clip widens, picture still) | Right at its start, later when the edge it opens from is bright against white paper | 0.05–0.2 beat before; check the worst peaks |
+| Grow from a point or a small card | Past the middle: the area grows with the square of the size | About 0.5 beat before |
+| Double exposure between two photo sets | The midpoint | Centre it on the beat |
+| A page sweep or wipe | Right as it enters when its front starts fast (ease-out) | On the beat |
+
+- **Stagger by whole beats.** Two photos entering half a beat apart merge into one peak between the beats. One element per beat lands each on its own beat.
+- **Longer holds need larger drifts.** A slow zoom that moves enough in four seconds reads as still over six. When a pace option lengthens pages, scale the drift so its speed stays the same.
+- **Iterate on half-size renders.** `render --scale 0.5` (or `sample` over the range) measures stills and beat sync as well as full size; only `RESOLUTION` warns. `check` lists the worst peaks with their time, nearest beat and signed offset (negative is early): fix those by type, using the table, before rendering at full size.
 
 ## Holds that still move
 

@@ -1,7 +1,7 @@
 {
   "name": "vvv",
-  "version": "0.1.2",
-  "description": "Vibe Vision Video: build editable video templates once and reuse them across projects and coding agents. Make, recreate and continue editable Remotion films; the current library focuses on wedding films.",
+  "version": "0.2.0",
+  "description": "Vibe Vision Video：一次构建视频模板，多次复用。用可复用模板制作、复刻和续改可编辑的 Remotion 影片，当前模板库以婚礼影片为主。Build editable video templates once and reuse them across projects and coding agents.",
   "author": {
     "name": "Vibe Vision Video contributors",
     "email": "contact@vibevision.video"

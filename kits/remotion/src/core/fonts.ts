@@ -17,6 +17,7 @@ const DEFS = {
   serif: { module: "CormorantGaramond", style: "normal", fallback: "Georgia, serif" },
   heiti: { module: "NotoSansSC", style: "normal", fallback: "sans-serif" },
   brush: { module: "MaShanZheng", style: "normal", fallback: "cursive" },
+  pen: { module: "LongCang", style: "normal", fallback: "cursive" },
   kuaile: { module: "ZCOOLKuaiLe", style: "normal", fallback: "sans-serif" },
   mono: { module: "JetBrainsMono", style: "normal", fallback: "monospace" },
 } as const;

@@ -20,15 +20,19 @@ These stages do not require a separate document each. Small changes start from t
 
 ## Recreate a reference video
 
-The user gives a reference video plus attachments: photos, logos, copy and music. The agent then:
+The user gives a reference video (a file, or a 抖音, 小红书, 快手 or TikTok share link fetched with their TikHub token) plus attachments: photos, logos, copy and music. The agent then:
 
-1. Inspects the reference with `vvv_media.py` (duration, frame rate, audio, frames sampled across the film and around each transition).
-2. Measures its rhythm: `analyze-music` writes a beat map of the soundtrack, and `vvv.py check --video REF --beats MAP` reports its still stretches, still share and beat alignment.
-3. Writes its structure in beats and decides what carries over (section order, motion, layout ideas) and what is replaced (people, footage, names, music without rights).
-4. Rebuilds it as an editable project on the closest template or a new composition, and generates missing artwork through an available image route.
-5. Renders the most characteristic section, compares frames and `check` numbers with the reference, then finishes the film.
+1. Measures its rhythm: `analyze-music` writes a beat map of the soundtrack, and `vvv.py check --video REF --beats MAP` reports still stretches, beat alignment and the peaks furthest off the beat.
+2. Writes a page inventory before any code: `vvv_ref.py sheet` tiles frames (every 0.5 s across the film, every 0.1 s around each transition), `layout` measures the photo boxes of settled frames, and each page's entrances, exits, text and decorations are written down in beats.
+3. Decides what carries over (page order, motion, layout) and what is replaced (people, footage, names, music without rights).
+4. Rebuilds on the closest template or a new composition, generating missing artwork with crops of the reference as style references.
+5. Compares: `vvv_ref.py compare` sets reference and rebuild side by side at the same beats, and `check` lists the remaining off-beat peaks.
 
 The reference is studied, never shipped: its footage, photos, voices, branding and unlicensed music stay out of the project. An agent with image generation works best. With both Claude Code and Codex installed locally, Claude Code can use Codex's image generation through the bundled bridge (the `c2c` route, which needs a local Codex login with image access). The bridge makes still images only; it does not generate video or voice. Exact reproduction is not promised. Details: [recreation reference](../skills/vvv/references/recreation.md).
+
+## Reference videos from share links
+
+With the user's TikHub token, `vvv_video.py fetch` downloads a 抖音, TikTok, 小红书 or 快手 video from its share link, without watermark, for a recreation to study; Bilibili is not supported yet. Each request is billed to the user's TikHub balance. See [integrations](integrations.md).
 
 ## Extract material from footage
 
@@ -36,10 +40,14 @@ The [media-processing reference](../skills/vvv/references/media-processing.md) d
 
 ## Music and beats
 
-The kit bundles one public-domain track and fetches licensed Mixkit tracks with `npm run music`. `npm run beats -- public/music/<file>` measures tempo, beats and downbeats for any supplied track, and templates place their cuts on that map.
+The kit bundles one public-domain track and fetches licensed Mixkit tracks with `npm run music`. `vvv.py music add` brings in the user's own track and measures its beats; `music fit` chooses where the song starts and how slow the pages run so the chorus opens the template's climax page, and reports the length and seconds per page before anything renders. A song the user names can be fetched for their own, noncommercial film with musicdl, which the user installs themselves; it is recorded as personal use and never packaged. See the [music and sound reference](../skills/vvv/references/music-and-sound.md).
+
+## Photos and deliveries in 百度网盘
+
+With Baidu's own `baidu-drive` Agent Skill, bundled unmodified, the agent downloads a share link or drive folder into a local intake folder and, on request, uploads the finished film; share links are created only when the user asks. See the [cloud storage reference](../skills/vvv/references/cloud-storage.md).
 
 ## External and future capabilities
 
-URL retrieval, OCR, speech recognition, text-to-speech, stem separation and video generation are **not bundled**. The agent may use a host tool that is actually available and authorized, and records unavailable operations rather than inventing results. The [video-generation reference](../skills/vvv/references/video-generation.md) describes a workflow reserved for a future provider; there is no video-generation adapter today.
+URL retrieval, OCR, speech recognition, text-to-speech (voice-over), stem separation and video generation are **not bundled**. The agent may use a host tool that is actually available and authorized, and records unavailable operations rather than inventing results. The [video-generation reference](../skills/vvv/references/video-generation.md) describes a workflow reserved for a future provider; there is no video-generation adapter today.
 
 See [verification](verification.md) for what has been tested and the [roadmap](../ROADMAP.md) for planned work.

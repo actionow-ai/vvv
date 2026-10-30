@@ -1,0 +1,379 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "couple": {
+      "type": "object",
+      "properties": {
+        "groom": {
+          "type": "string",
+          "description": "新郎姓名"
+        },
+        "bride": {
+          "type": "string",
+          "description": "新娘姓名"
+        },
+        "groomEn": {
+          "type": "string",
+          "description": "新郎英文名或拼音"
+        },
+        "brideEn": {
+          "type": "string",
+          "description": "新娘英文名或拼音"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "婚礼日期"
+        },
+        "tagline": {
+          "type": "string",
+          "description": "主标题"
+        }
+      },
+      "required": [
+        "groom",
+        "bride",
+        "groomEn",
+        "brideEn",
+        "date",
+        "tagline"
+      ]
+    },
+    "photos": {
+      "type": "object",
+      "properties": {
+        "cover": {
+          "type": "string",
+          "minLength": 1
+        },
+        "invite": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "poem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "trio": {
+          "minItems": 3,
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "pair": {
+          "minItems": 4,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "thanks": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "caption": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "heart": {
+          "type": "string",
+          "minLength": 1
+        },
+        "xi": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "about": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "triptych": {
+          "minItems": 6,
+          "maxItems": 6,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "collage": {
+          "minItems": 3,
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "romance": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ending": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "cover",
+        "invite",
+        "poem",
+        "trio",
+        "pair",
+        "thanks",
+        "caption",
+        "heart",
+        "xi",
+        "about",
+        "triptych",
+        "collage",
+        "romance",
+        "ending"
+      ]
+    },
+    "copy": {
+      "type": "object",
+      "properties": {
+        "cover_title": {
+          "type": "string",
+          "description": "封面 · 手写标题（两行，用｜分隔）"
+        },
+        "cover_en": {
+          "type": "string",
+          "description": "封面 · 英文小字"
+        },
+        "invite_head": {
+          "type": "string",
+          "description": "请柬页 · 顶部英文"
+        },
+        "invite_ask": {
+          "type": "string",
+          "description": "请柬页 · 左圆弧形英文"
+        },
+        "invite_yes": {
+          "type": "string",
+          "description": "请柬页 · 右圆弧形英文"
+        },
+        "poem": {
+          "type": "string",
+          "description": "诗句页 · 诗句（用｜分行，空一段用｜｜）"
+        },
+        "poem_en": {
+          "type": "string",
+          "description": "诗句页 · 英文小字（用｜分行）"
+        },
+        "trio_kicker": {
+          "type": "string",
+          "description": "三联页 · 左上英文（两行，用｜分隔）"
+        },
+        "trio_quote": {
+          "type": "string",
+          "description": "三联页 · 右下一句（两行，用｜分隔）"
+        },
+        "pair_quote_a": {
+          "type": "string",
+          "description": "双图页 · 第一组顶部一句"
+        },
+        "pair_quote_b": {
+          "type": "string",
+          "description": "双图页 · 第二组顶部一句"
+        },
+        "pair_tag": {
+          "type": "string",
+          "description": "双图页 · 左下英文"
+        },
+        "thanks": {
+          "type": "string",
+          "description": "居中诗句页（用｜分行，空一段用｜｜）"
+        },
+        "caption": {
+          "type": "string",
+          "description": "双图页 · 底部打字一句"
+        },
+        "heart_lines": {
+          "type": "string",
+          "description": "爱心页 · 左下三行（用｜分隔）"
+        },
+        "heart_en": {
+          "type": "string",
+          "description": "爱心页 · 右上英文（用｜分隔）"
+        },
+        "xi_lines": {
+          "type": "string",
+          "description": "囍字页 · 三行（用｜分隔）"
+        },
+        "about_kicker": {
+          "type": "string",
+          "description": "竖排页 · 小标题"
+        },
+        "about_title": {
+          "type": "string",
+          "description": "竖排页 · 大标题"
+        },
+        "collage_kicker": {
+          "type": "string",
+          "description": "拼贴页 · 右上英文（两行，用｜分隔）"
+        },
+        "collage_lines": {
+          "type": "string",
+          "description": "拼贴页 · 小字（用｜分行）"
+        },
+        "romance_title": {
+          "type": "string",
+          "description": "手写大字（三行，用｜分隔）"
+        },
+        "romance_lines": {
+          "type": "string",
+          "description": "手写页 · 右下三行（用｜分隔）"
+        },
+        "vow": {
+          "type": "string",
+          "description": "结尾 · 誓言（用｜分行）"
+        },
+        "thank_you": {
+          "type": "string",
+          "description": "结尾 · 致谢英文"
+        }
+      },
+      "required": [
+        "cover_title",
+        "cover_en",
+        "invite_head",
+        "invite_ask",
+        "invite_yes",
+        "poem",
+        "poem_en",
+        "trio_kicker",
+        "trio_quote",
+        "pair_quote_a",
+        "pair_quote_b",
+        "pair_tag",
+        "thanks",
+        "caption",
+        "heart_lines",
+        "heart_en",
+        "xi_lines",
+        "about_kicker",
+        "about_title",
+        "collage_kicker",
+        "collage_lines",
+        "romance_title",
+        "romance_lines",
+        "vow",
+        "thank_you"
+      ]
+    },
+    "music": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "public/ 下的音乐路径，如 music/xxx.mp3；留空为无声"
+        },
+        "volume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "音量"
+        },
+        "trimBeforeSec": {
+          "type": "number",
+          "minimum": 0,
+          "description": "从音乐第几秒开始"
+        },
+        "fadeInSec": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fadeOutSec": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "src",
+        "volume",
+        "trimBeforeSec",
+        "fadeInSec",
+        "fadeOutSec"
+      ]
+    },
+    "fps": {
+      "type": "integer",
+      "minimum": 24,
+      "maximum": 60,
+      "description": "帧率：预览 30，成片 60"
+    },
+    "format": {
+      "description": "画幅，例如 16:9 或 9:16（由工程初始化时选择）",
+      "type": "string",
+      "pattern": "^[1-9][0-9]*:[1-9][0-9]*$"
+    },
+    "beatGrid": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "beats": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "required": [
+            "beats"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pace": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 2,
+      "description": "节奏：每页时长的倍数。1 为默认；1.5 让每页（每组照片）停留更久，全片随之变长"
+    }
+  },
+  "required": [
+    "couple",
+    "photos",
+    "copy",
+    "music",
+    "fps",
+    "pace"
+  ]
+}

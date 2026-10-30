@@ -5,13 +5,13 @@
     "email": "contact@vibevision.video"
   },
   "metadata": {
-    "description": "Vibe Vision Video: reusable, editable video templates and the skill that uses them."
+    "description": "Vibe Vision Video：可复用、可编辑的视频模板，以及使用它们的技能。Reusable, editable video templates and the skill that uses them."
   },
   "plugins": [
     {
       "name": "vvv",
       "source": "./",
-      "description": "Make, recreate and continue editable Remotion films from reusable templates; the current library focuses on wedding films.",
+      "description": "用可复用模板制作、复刻和续改可编辑的 Remotion 影片，当前以婚礼影片为主。Make, recreate and continue editable Remotion films from reusable templates.",
       "homepage": "https://vibevision.video",
       "license": "MIT"
     }

@@ -1,0 +1,14 @@
+{
+  "sky": {
+    "width": 1920,
+    "height": 1080,
+    "source": "Codex image generation via the c2c route, 2026-10-29, with a crop of the reference as style reference",
+    "sourceSha256": "8d33dcb0a3d7531c15665f71688f1a15f1395f32abb3cb25e27deeeb2d73ad0f"
+  },
+  "coupleLine": {
+    "width": 894,
+    "height": 1000,
+    "source": "Codex image generation via the c2c route, 2026-10-29, with a crop of the reference as style reference",
+    "sourceSha256": "f720a887e74390f7739ececbca005ac1b1783352bd148339aa136653f30124d8"
+  }
+}

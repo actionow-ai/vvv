@@ -235,5 +235,12 @@
       "VVV"
     ],
     "license": "MIT"
+  },
+  "shows": {
+    "couple": {
+      "groom": "avatar labels",
+      "bride": "avatar labels",
+      "date": "record card"
+    }
   }
 }

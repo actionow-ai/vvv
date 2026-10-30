@@ -4,7 +4,7 @@ Start from a wedding template, give your agent a brief, and check the render bef
 
 ## Template films
 
-Every template in [kits/remotion](../kits/remotion) has a checked-in fictional fixture. Album, Comedy, Doodle and DV Story have published previews; Starter provides a small editable reel without a published preview. [Watch the previews](../docs/templates.md), then follow the [fixture guide](../kits/remotion/examples/README.md) to open the fixtures in Studio or render them.
+Every template in [kits/remotion](../kits/remotion) has a checked-in fictional fixture. Album, Cinema, Comedy, Doodle, DV Story, Editorial, Memoir and Starter all have published previews. [Watch the previews](../docs/templates.md), then follow the [fixture guide](../kits/remotion/examples/README.md) to open the fixtures in Studio or render them.
 
 Use Node.js 26 and npm. From the repository root:
 

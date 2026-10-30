@@ -1,0 +1,34 @@
+{
+  "repository": "https://github.com/baidu-netdisk/bdpan-storage",
+  "commit": "f5ab379cb6f009da322a295c19608ec144a55ec1",
+  "version": "v1.7.7",
+  "license": "Apache-2.0",
+  "local_modifications": false,
+  "note": "The baidu-drive skill folder, unmodified. scripts/update.sh and scripts/memory-backup.sh are not included: updates come through this repository, and memory backup is unrelated to VVV. Agents reach it through references/cloud-storage.md; it is not a separate top-level skill.",
+  "files": {
+    "LICENSE": "LICENSE",
+    "SKILL.md": "skills/baidu-drive/SKILL.md",
+    "VERSION": "skills/baidu-drive/VERSION",
+    "reference/authentication.md": "skills/baidu-drive/reference/authentication.md",
+    "reference/bdpan-commands.md": "skills/baidu-drive/reference/bdpan-commands.md",
+    "reference/examples.md": "skills/baidu-drive/reference/examples.md",
+    "reference/notes.md": "skills/baidu-drive/reference/notes.md",
+    "reference/troubleshooting.md": "skills/baidu-drive/reference/troubleshooting.md",
+    "scripts/install.sh": "skills/baidu-drive/scripts/install.sh",
+    "scripts/login.sh": "skills/baidu-drive/scripts/login.sh",
+    "scripts/uninstall.sh": "skills/baidu-drive/scripts/uninstall.sh"
+  },
+  "sha256": {
+    "LICENSE": "0cd316fc47fbc9b219c301c7446a7d4e7cc9ffe4a5fec8a93caa0809cdc136a9",
+    "SKILL.md": "420a690b81e4de280818a20811c57780b9c1cbf20cc499b3de961754c6e56544",
+    "VERSION": "329d586c80ae8d1d947cd728d749a27267420a47ba7756dbe23df63e3effa78b",
+    "reference/authentication.md": "fb5026eeae2b3ac5fa73380bd798d57b6d1e9c3e381a764e4d8da5faa135d5bc",
+    "reference/bdpan-commands.md": "205a80e7b94bbdadcdaba4d67c0e9264551428167e9b1a4901610180bb136750",
+    "reference/examples.md": "d3c2f92e041b74d05019f0a933219867ac02a1b1ec0330c999caa401cadad7fc",
+    "reference/notes.md": "effdfdc9aaf3faf55dc3061ef8f01d3bd24675411bbc1d443e6a6013cfa78747",
+    "reference/troubleshooting.md": "5a5195977f77d48b5bdc273763484f1828b8bd5486d22ea1bbb08d035246cbe2",
+    "scripts/install.sh": "4e8ecb967a12ba7a0648ffcaca1cb05796e4bf824b884b724e88784626bacc10",
+    "scripts/login.sh": "624b26ff330a8d0caace954af55f6b23ba2c665e98f5bd31da370458858e8030",
+    "scripts/uninstall.sh": "7620f20eff6b9920bf8c82bde65e791e7eee6ae9604702b80bab780e26e8c52c"
+  }
+}

@@ -5,7 +5,7 @@ VVV is one repository containing a portable Agent Skill and an editable Remotion
 The mission is to build templates once and reuse them across projects and different agents, reducing token use from repeated design, code generation and debugging. Wedding films are the current entry point. Prefer an existing template's inputs and supported settings; make scoped source changes when the brief requires them. Read the selected catalog and relevant references before expanding into other templates. Preserve the shared project/CLI contract across hosts, and keep host-specific tool discovery in integration guidance. Token savings are a goal, not a measured claim until supported by a comparable benchmark; reuse never replaces render and visual review.
 
 - `skills/vvv/`: independently copyable skill instructions, references, examples, media/project/image helpers and pinned c2c executor.
-- `kits/remotion/`: editable wedding templates (Album, Comedy, Doodle, DV Story, Starter) and effects (`src/effects/`), their catalog records, example fixtures, license rules for packaging (`package-licenses.json`) and runtime media.
+- `kits/remotion/`: editable wedding templates (Album, Cinema, Comedy, Doodle, DV Story, Editorial, Memoir, Starter) and effects (`src/effects/`), their catalog records, example fixtures, license rules for packaging (`package-licenses.json`) and runtime media.
 - `examples/`: walkthroughs and agent briefs.
 - `tests/`: offline Python behavior and packaging tests.
 - `docs/`: public user/developer guides, the `.vvv` format specification (`docs/format/`) and protocol drafts.

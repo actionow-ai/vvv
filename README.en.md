@@ -138,7 +138,7 @@ The first time your agent runs commands on your machine, it may ask for permissi
 
 <table>
   <tr>
-    <td width="33%" valign="top"><b>Status</b><br>0.1, an early release. Verified end to end on macOS ARM64 with Claude Code and Codex; WorkBuddy and other platforms are less tested. <a href="docs/verification.md">Verification and limits</a></td>
+    <td width="33%" valign="top"><b>Status</b><br>0.2, an early release. Verified end to end on macOS ARM64 with Claude Code and Codex; WorkBuddy and other platforms are less tested. <a href="docs/verification.md">Verification and limits</a></td>
     <td width="33%" valign="top"><b>Use and license</b><br>For learning and research only. Code, docs, templates and demo media are <a href="LICENSE">MIT</a>; fonts, preview soundtracks and third-party code keep their own terms, and musicdl is non-commercial only: <a href="MEDIA_LICENSE.md">media</a> · <a href="THIRD_PARTY_NOTICES.md">third-party notices</a></td>
     <td width="33%" valign="top"><b>Get involved</b><br><a href="CONTRIBUTING.md">Contributing</a> · <a href="ROADMAP.md">Roadmap</a> · <a href="CHANGELOG.md">Changelog</a><br><a href="SECURITY.md">Security</a> · <a href="docs/brand.md">Brand kit</a> · <a href="https://vibevision.video/submit/">Submit a template</a></td>
   </tr>

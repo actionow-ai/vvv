@@ -138,7 +138,7 @@ Agent 第一次在你的电脑上运行命令时，可能会先征求你的同�
 
 <table>
   <tr>
-    <td width="33%" valign="top"><b>状态</b><br>0.1 早期版本。已在 macOS ARM64 上用 Claude Code 和 Codex 完整验证，WorkBuddy 和其他平台测试较少。<a href="docs/verification.md">验证与限制</a></td>
+    <td width="33%" valign="top"><b>状态</b><br>0.2 早期版本。已在 macOS ARM64 上用 Claude Code 和 Codex 完整验证，WorkBuddy 和其他平台测试较少。<a href="docs/verification.md">验证与限制</a></td>
     <td width="33%" valign="top"><b>用途与许可</b><br>仅供学习与研究。代码、文档、模板与演示素材采用 <a href="LICENSE">MIT</a>；字体、预览配乐和第三方代码沿用各自条款，其中 musicdl 仅限非商业使用：<a href="MEDIA_LICENSE.md">媒体许可</a> · <a href="THIRD_PARTY_NOTICES.md">第三方说明</a></td>
     <td width="33%" valign="top"><b>参与</b><br><a href="CONTRIBUTING.md">贡献指南</a> · <a href="ROADMAP.md">路线图</a> · <a href="CHANGELOG.md">更新记录</a><br><a href="SECURITY.md">安全</a> · <a href="docs/brand.md">品牌素材</a> · <a href="https://vibevision.video/zh/submit/">投稿模板</a></td>
   </tr>
